@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, type OnInit } from '@angular/core';
+import { RouterModule } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
 
 @Component({
@@ -7,7 +8,8 @@ import { AngularSvgIconModule } from "angular-svg-icon";
   standalone: true,
   imports: [
     CommonModule,
-    AngularSvgIconModule
+    AngularSvgIconModule,
+    RouterModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],

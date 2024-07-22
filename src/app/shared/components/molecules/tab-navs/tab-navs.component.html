@@ -1,0 +1,18 @@
+<div class="p-4 cursor-pointer text-start hover:bg-gray-200 md:p-5 rounded-xl"
+  (click)="setActiveTab(existTab)"
+  [ngClass]="{'bg-white shadow-md hover:border-transparent': activeTab === existTab}"
+  aria-controls="tabs-with-card-1" role="tab">
+  <span class="flex">
+    <svg-icon [src]="svgIcons" svgClass="flex-shrink-0 mt-2 text-gray-800 size-6 md:size-7" />
+    <span class="grow ms-6">
+      <span class="block text-lg font-semibold text-gray-800"
+        [ngClass]="{'text-blue-600': activeTab === existTab}">{{ title }}</span>
+      <span class="block mt-1 text-gray-800">{{ subtitle }}</span>
+      <div>
+        @if (activeTab === existTab) {
+        <ng-content></ng-content>
+        }
+      </div>
+  </span>
+  </span>
+</div>
