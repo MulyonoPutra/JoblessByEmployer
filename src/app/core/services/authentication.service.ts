@@ -8,6 +8,7 @@ import { JWTDecoded } from '../domain/entities/jwt-decoded';
 import { LoginDto } from '../domain/dto/login.dto';
 import { RegisterDto } from '../domain/dto/register.dto';
 import { StorageService } from '../../shared/services/storage.service';
+import { ToastService } from '../../shared/services/toast.service';
 import { environment } from '../../../environments/environment.development';
 import { handlerHttpError } from '../utility/http-handle-error';
 import { jwtDecode } from 'jwt-decode';
@@ -21,6 +22,7 @@ export class AuthenticationService {
     constructor(
         private readonly http: HttpClient,
         private readonly storageService: StorageService,
+        private toastService: ToastService
     ) {}
 
     login(body: LoginDto): Observable<HttpResponseEntity<Credentials>> {
@@ -63,7 +65,10 @@ export class AuthenticationService {
 
     generateRefreshToken(refreshToken: string): Observable<HttpResponseEntity<Credentials>> {
         if (!refreshToken) {
-            return throwError(() => console.error('Refresh token not found!'));
+            return throwError(() => {
+              console.error('Refresh token not found!')
+              return this.toastService.showErrorToast('Error', 'Refresh token not found');
+            });
         }
 
         const headers = new HttpHeaders().set('Authorization', `Bearer ${refreshToken}`);
