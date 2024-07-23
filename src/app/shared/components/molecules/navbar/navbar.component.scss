@@ -1,3 +1,35 @@
 :host {
   display: block;
 }
+
+header {
+  @apply z-50 flex flex-wrap w-full pb-2 text-sm bg-white border-b border-scarlet-200 sm:justify-start sm:flex-col sm:pb-0;
+
+  div:first-child {
+    @apply max-w-[85rem] mx-auto w-full px-4 sm:px-6 lg:px-8;
+
+    .containers {
+      @apply flex items-center justify-end w-full py-2 gap-x-5 sm:pt-2 sm:pb-0;
+
+      .underline-btn {
+        @apply inline-flex items-center justify-center gap-2 text-sm font-medium text-scarlet hover:text-seance-500;
+      }
+    }
+  }
+
+  nav {
+    @apply relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8;
+
+    .toggle {
+      @apply flex items-center justify-center text-sm font-semibold border border-gray-200 rounded-lg text-scarlet  size-9 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none;
+
+      .icons {
+        @apply flex-shrink-0 size-4;
+      }
+    }
+
+    .menu {
+      @apply hidden overflow-hidden transition-all duration-300 basis-full grow sm:block;
+    }
+  }
+}

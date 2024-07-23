@@ -58,3 +58,7 @@
   border-image: linear-gradient(to right, #3c5b6f, #3e4a7662, #153448);
   border-image-slice: 1;
 }
+
+.btn-violet {
+  @apply inline-flex items-center px-3 py-2 text-sm font-semibold border rounded-lg text-seance-600 border-seance-600 gap-x-2 hover:border-seance-500 hover:text-seance-500 disabled:opacity-50 disabled:pointer-events-none;
+}
