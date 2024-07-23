@@ -4,6 +4,7 @@ import { AngularSvgIconModule } from "angular-svg-icon";
 import { CommonModule } from "@angular/common";
 import { IncompleteSections } from "../../../../core/constants/incomplete-section";
 import { NavTabs } from "../../../../core/domain/entities/nav-tabs";
+import { PersonalDetailsFormComponent } from '../../components/personal-details-form/personal-details-form.component';
 import { Router } from "@angular/router";
 import { TabNavsComponent } from "../../../../shared/components/molecules/tab-navs/tab-navs.component";
 
@@ -18,7 +19,8 @@ interface CompleteMessage {
   imports: [
     CommonModule,
     AngularSvgIconModule,
-    TabNavsComponent
+    TabNavsComponent,
+    PersonalDetailsFormComponent
   ],
   templateUrl: './account-details.component.html',
   styleUrls: ['./account-details.component.scss'],
@@ -27,10 +29,12 @@ export class AccountDetailsComponent {
 
   router: Router = inject(Router);
 
+  isAccount: boolean = false;
+
   // Dev purpose
   accountId = '50030354-581d-46f4-8bc6-b61dc11605a4';
   addressId = '50030354-581d-46f4-8bc6-b61dc11605a4';
-  companyId = '';
+  companyId = 's';
 
   incompleteSections: NavTabs[] = IncompleteSections;
   activeTab: string = 'tabs-with-card-item-1';
@@ -73,9 +77,15 @@ export class AccountDetailsComponent {
     return null;
   }
 
+  isUpdateAccount() {
+    this.isAccount = !this.isAccount;
+  }
+
 
   navigate(routes: string): void {
     this.router.navigateByUrl(`/account/${routes}`);
   }
 
 }
+
+// https://preline.co/examples/application-form-layouts.html

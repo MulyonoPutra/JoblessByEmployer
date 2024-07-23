@@ -1,1 +1,33 @@
-<p>register works!</p>,
+<div class="flex h-screen bg-gradient-to-bl from-blue-900 via-transparent">
+  <div class="flex items-center justify-center w-full bg-gray-100 lg:w-1/2">
+    <div class="w-full max-w-md p-6">
+      <h1 class="text-3xl font-bold text-scarlet md:text-4xl md:leading-tight lg:text-5xl lg:leading-tight dark:text-neutral-200">
+        Streamline Your Recruitment Process
+      </h1>
+      <p class="mt-3 text-base text-scarlet-900">
+        Leverage the power of Preline to create and manage job listings effortlessly. Log in to access your employer dashboard and start finding the right talent in no time.
+      </p>
+      <form class="space-y-4">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="text" id="email" name="email" class="w-full p-2 mt-1 transition-colors duration-300 border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" id="password" name="password" class="w-full p-2 mt-1 transition-colors duration-300 border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+        </div>
+        <div>
+          <button type="button" class="w-full p-2 transition-colors duration-300 rounded-md text-violet-50 bg-scarlet hover:bg-scarlet-800 focus:outline-none focus:bg-scarlet focus:ring-2 focus:ring-offset-2 focus:ring-scarlet-900">Sign Up</button>
+        </div>
+      </form>
+      <div class="mt-4 text-sm text-center text-scarlet-600">
+        <p>Already have an account?
+          <a routerLink="/auth/login" class="font-semibold cursor-pointer text-scarlet hover:underline hover:underline-offset-1">Login here</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="hidden h-full lg:block lg:w-1/2">
+    <img src="https://images.unsplash.com/photo-1606868306217-dbf5046868d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80" alt="Background" class="object-cover w-full h-full">
+  </div>
+</div>
