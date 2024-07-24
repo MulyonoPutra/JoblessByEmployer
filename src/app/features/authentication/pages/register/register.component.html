@@ -7,17 +7,38 @@
       <p class="mt-3 text-base text-scarlet-900">
         Leverage the power of Preline to create and manage job listings effortlessly. Log in to access your employer dashboard and start finding the right talent in no time.
       </p>
-      <form class="space-y-4">
+      <form [formGroup]="form" class="space-y-4">
+                                <div class="col-span-full">
+                                    <app-form-input-field
+                                        class="mt-2"
+                                        [formGroup]="form"
+                                        [label]="'Name'"
+                                        fieldName="name" />
+                                    <app-form-input-field
+                                        class="mt-2"
+                                        [formGroup]="form"
+                                        [label]="'Email'"
+                                        fieldName="email" />
+                                    <app-form-password-field
+                                        class="mt-4"
+                                        [formGroup]="form"
+                                        [label]="'Password'"
+                                        fieldName="password" />
+                                    <app-form-password-field
+                                        class="mt-4"
+                                        [formGroup]="form"
+                                        [label]="'Confirm Password'"
+                                        fieldName="confirmPassword" />
+                                </div>
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-          <input type="text" id="email" name="email" class="w-full p-2 mt-1 transition-colors duration-300 border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
-        </div>
-        <div>
-          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-          <input type="password" id="password" name="password" class="w-full p-2 mt-1 transition-colors duration-300 border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
-        </div>
-        <div>
-          <button (click)="register()" type="button" class="w-full p-2 transition-colors duration-300 rounded-md text-violet-50 bg-scarlet hover:bg-scarlet-800 focus:outline-none focus:bg-scarlet focus:ring-2 focus:ring-offset-2 focus:ring-scarlet-900">Sign Up</button>
+                                    <app-button
+                                        [isLoading]="isLoading"
+                                        (clicked)="onSubmit()"
+                                        [label]="'Sign Up'"
+                                        [isCancel]="false"
+                                        [isLarge]="true"
+                                        [isDisabled]="form.invalid!"
+                                        [type]="'save'" />
         </div>
       </form>
       <div class="mt-4 text-sm text-center text-scarlet-600">
