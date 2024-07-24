@@ -29,7 +29,7 @@ import { NavbarComponent } from '../../../shared/components/molecules/navbar/nav
 export class MainComponent implements OnInit {
 
   private currentRoute!: string;
-  private fullWidthRoutes: string[] = ['/', '/account/details', '/jobs/manage'];
+  private fullWidthRoutes: string[] = ['/', '/account/details', '/jobs/manage', '/jobs/create'];
 
   constructor(
     private readonly router: Router,

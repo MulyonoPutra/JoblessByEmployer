@@ -1,3 +1,7 @@
 :host {
   display: block;
 }
+
+.tabs {
+  @apply inline-flex items-center px-4 py-3 -mb-px text-sm font-medium text-center text-gray-500 border rounded-t-lg hs-tab-active:bg-white hs-tab-active:border-b-transparent hs-tab-active:text-scarlet-600 gap-x-2 bg-scarlet-50 hover:text-gray-700 focus:outline-none focus:text-gray-700 disabled:opacity-50 disabled:pointer-events-none;
+}

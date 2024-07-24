@@ -1,7 +1,8 @@
+import { AngularSvgIconModule } from 'angular-svg-icon';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { LogoComponent } from '../../atoms/logo/logo.component';
 import { RouterModule } from '@angular/router';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
   imports: [
     CommonModule,
     RouterModule,
-    AngularSvgIconModule
+    AngularSvgIconModule, LogoComponent
   ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
