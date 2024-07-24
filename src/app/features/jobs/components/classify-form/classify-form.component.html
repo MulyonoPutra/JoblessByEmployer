@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+  <div class="w-full">
+    <app-form-input-field
+      [formGroup]="form"
+      [label]="'Title'"
+      fieldName="title"
+    />
+
+  </div>
+</form>
+      <div class="flex justify-end mt-5 gap-x-2">
+        <button (click)="onSave()" type="button" class="btn-negative">
+          Cancel
+        </button>
+        <button type="button" class="btn-positive">
+          Save changes
+        </button>
+      </div>
