@@ -9,11 +9,11 @@
 }
 
 .label-valid {
-    @apply flex justify-center text-start text-xs font-medium text-elephant-950;
+    @apply flex justify-center text-start text-sm font-medium text-scarlet-950;
 }
 
 .label-invalid {
-    @apply flex justify-center text-start text-xs font-medium text-red-700;
+    @apply flex justify-center text-start text-sm font-medium text-red-700;
 }
 
 .blink {
@@ -27,9 +27,8 @@
 }
 
 input {
-    font-size: 12px;
     font-weight: 700;
-    @apply rounded-lg border-elephant-200;
+    @apply rounded-lg border-scarlet-200 text-sm;
 }
 
 ::ng-deep {

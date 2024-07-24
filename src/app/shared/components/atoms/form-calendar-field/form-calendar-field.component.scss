@@ -9,7 +9,7 @@
 }
 
 .label-valid {
-    @apply flex justify-center text-start text-xs font-medium text-elephant-950;
+    @apply flex justify-center text-start text-xs font-medium text-scarlet-950;
 }
 
 .label-invalid {
@@ -32,8 +32,8 @@
         font-size: 12px !important;
     }
 
-    .p-datepicker table td.p-datepicker-today > span {
-        @apply bg-elephant-600 text-white;
+    .p-datepicker table td.p-datepicker-today>span {
+        @apply bg-scarlet-600 text-white;
     }
 
     .p-datepicker table th,
@@ -51,6 +51,6 @@
     .p-component {
         font-size: 12px;
         font-weight: 700;
-        @apply border-elephant-200 rounded-lg;
+        @apply border-scarlet-200 rounded-lg;
     }
 }
