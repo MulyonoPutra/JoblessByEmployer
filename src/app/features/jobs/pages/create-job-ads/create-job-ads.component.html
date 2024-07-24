@@ -71,12 +71,9 @@
       <p class="text-sm text-scarlet-900">
          Input job classification details
       </p>
-
     </div>
       <div class="w-full h-full p-4 border border-dashed border-violet-200 bg-scarlet-50 rounded-xl">
-        <app-classify-form></app-classify-form>
-        <!-- Form Here -->
-
+        <app-classify-form (classify)="classifyData($event)" />
       </div>
     </div>
     <!-- End First Contnet -->
@@ -85,10 +82,13 @@
     <div data-hs-stepper-content-item='{
       "index": 2
     }' style="display: none;">
-      <div class="flex items-center justify-center h-48 p-4 border border-gray-200 border-dashed bg-gray-50 rounded-xl">
-        <h3 class="text-gray-500">
-          Second content
-        </h3>
+          <div class="mb-8 text-start">
+      <h2 class="text-2xl font-bold text-scarlet md:text-3xl">
+         Write about your job
+      </h2>
+    </div>
+      <div class="w-full h-full p-4 border border-dashed border-violet-200 bg-scarlet-50 rounded-xl">
+        <app-job-description-form></app-job-description-form>
       </div>
     </div>
     <!-- End First Contnet -->
@@ -123,11 +123,11 @@
           <svg-icon src="../../../../../assets/icons/arrow-left.svg" svgClass="shrink-0 size-4" />
           Back
         </button>
-        <button type="button" class="btn-positive" data-hs-stepper-next-btn="" (click)="passData()">
+        <button type="button" class="btn-positive" data-hs-stepper-next-btn="">
           Next
           <svg-icon src="../../../../../assets/icons/arrow-right.svg" svgClass="shrink-0 size-4" />
         </button>
-        <button type="button" class="btn-positive" data-hs-stepper-finish-btn="" style="display: none;">
+        <button (click)="onSubmit()" type="button" class="btn-positive" data-hs-stepper-finish-btn="" style="display: none;">
           Finish
         </button>
         <button type="reset" class="btn-positive" data-hs-stepper-reset-btn="" style="display: none;">

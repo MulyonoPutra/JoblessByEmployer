@@ -13,11 +13,11 @@
 }
 
 .label-valid {
-    @apply flex justify-center text-start text-xs font-medium text-scarlet-950;
+    @apply flex justify-center text-start text-sm font-medium text-scarlet-950;
 }
 
 .label-invalid {
-    @apply flex justify-center text-start text-xs font-medium text-red-700;
+    @apply flex justify-center text-start text-sm font-medium text-red-700;
 }
 
 .blink {

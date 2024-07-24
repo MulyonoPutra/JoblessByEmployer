@@ -1,10 +1,16 @@
 import { CommonModule } from "@angular/common";
-import { Component, DestroyRef, EventEmitter, Output, type OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, type OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { Router } from "@angular/router";
-import { ToastService } from "../../../../shared/services/toast.service";
-import { ValidationService } from "../../../../shared/services/validation.service";
 import { FormInputFieldComponent } from "../../../../shared/components/atoms/form-input-field/form-input-field.component";
+import { debounceTime } from "rxjs";
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { NumberFieldComponent } from "../../../../shared/components/atoms/number-field/number-field.component";
+import { ClassifyDto } from "../../../../core/domain/dto/classify.dto";
+
+type CheckboxType = {
+  name: string
+  key: string
+}
 
 @Component({
   selector: 'app-classify-form',
@@ -13,7 +19,9 @@ import { FormInputFieldComponent } from "../../../../shared/components/atoms/for
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RadioButtonModule,
     FormInputFieldComponent,
+    NumberFieldComponent,
   ],
   templateUrl: './classify-form.component.html',
   styleUrls: ['./classify-form.component.scss'],
@@ -22,33 +30,59 @@ export class ClassifyFormComponent implements OnInit {
 
   form!: FormGroup;
   isLoading: boolean = false;
+  @Output() classify = new EventEmitter<ClassifyDto>();
+
+  workTypes: CheckboxType[] = [
+    { name: 'Full-Time', key: 'FT' },
+    { name: 'Part-Time', key: 'PT' },
+    { name: 'Contract', key: 'CR' },
+    { name: 'Casual', key: 'CS' }
+  ];
+
+  payTypes: CheckboxType[] = [
+    { name: 'Hourly Rate', key: 'HR' },
+    { name: 'Monthly Salary', key: 'MS' },
+    { name: 'Annual Salary', key: 'AS' },
+    { name: 'Annual Plus Commission', key: 'AP' }
+  ];
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly router: Router,
-    private readonly destroyRef: DestroyRef,
-    private readonly validationService: ValidationService,
-    private readonly toastService: ToastService,
   ) { }
 
   ngOnInit(): void {
     this.formInit();
+    this.detectValueChanges();
   }
 
   formInit(): void {
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
+      salary: [null, Validators.required],
+      workType: ['', Validators.required],
+      payType: ['', Validators.required],
     });
   }
 
-  get formCtrlValue() {
+  get formCtrlValue(): ClassifyDto {
     return {
       title: this.form.get('title')?.value,
+      salary: this.form.get('salary')?.value,
+      workType: this.form.get('workType')?.value,
+      payType: this.form.get('payType')?.value,
     };
   }
 
-  onSave(): void {
-
+  detectValueChanges(): void {
+    this.form?.valueChanges
+      .pipe(debounceTime(2000))
+      .subscribe({
+        next: (value) => {
+          if (value) {
+            this.classify.emit(value);
+          }
+        }
+      });
   }
 
 }
