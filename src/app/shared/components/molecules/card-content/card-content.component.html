@@ -1,0 +1,19 @@
+<div class="px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-1">
+  <div class="relative p-4 bg-white shadow rounded-xl sm:p-7">
+    <div
+      class="absolute top-1 right-1 p-4 mt-0.5 size-5 flex justify-center items-center rounded-full bg-violet-50 text-scarlet">
+      <button type="button" (click)="onClicked()">
+        <i class="pi pi-pen-to-square"></i>
+      </button>
+    </div>
+    <div class="mb-8 text-start">
+      <h2 class="text-2xl font-bold text-scarlet md:text-3xl">
+        {{ title }}
+      </h2>
+      <p class="text-sm text-scarlet-900">
+        {{ subtitle }}
+      </p>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -16,6 +16,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./features/account/pages/acount.routes').then((c) => c.ACCOUNT_ROUTES),
       },
+      {
+        path: 'jobs',
+        loadChildren: () =>
+          import('./features/jobs/job.routes').then((c) => c.JOB_ROUTES),
+      },
     ],
   },
   {

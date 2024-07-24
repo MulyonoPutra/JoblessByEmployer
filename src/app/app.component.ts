@@ -4,6 +4,7 @@ import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Rout
 import { take, timer } from 'rxjs';
 
 import { IStaticMethods } from 'preline/preline';
+import { ToastModule } from 'primeng/toast';
 
 declare global {
   interface Window {
@@ -14,7 +15,7 @@ declare global {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, ToastModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

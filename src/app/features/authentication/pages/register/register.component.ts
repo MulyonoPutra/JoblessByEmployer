@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, type OnInit } from '@angular/core';
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
+import { ToastService } from "../../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,16 @@ import { RouterModule } from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
+  constructor(
+    private readonly router: Router,
+    private readonly toastService: ToastService
+  ) { }
+
   ngOnInit(): void { }
+
+  register() {
+    this.toastService.showSuccessToast('Success', 'Login Success')
+    this.router.navigate(['/']);
+  }
 
 }
