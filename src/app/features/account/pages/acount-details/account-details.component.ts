@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 
 import { AccountDetailContentComponent } from '../../components/acount-detail-content/account-detail-content.component';
 import { AccountDetailFormComponent } from '../../components/account-detail-form/account-detail-form.component';
@@ -9,6 +9,7 @@ import { CardContentComponent } from '../../../../shared/components/molecules/ca
 import { CommonModule } from "@angular/common";
 import { CompanyDetailContentComponent } from '../../components/company-detail-content/company-detail-content.component';
 import { CompanyDetailFormComponent } from '../../components/company-detail-form/company-detail-form.component';
+import { EmployerService } from '../../../../core/services/employer.service';
 import { IncompleteSections } from "../../../../core/constants/incomplete-section";
 import { NavTabs } from "../../../../core/domain/entities/nav-tabs";
 import { Router } from "@angular/router";
@@ -39,7 +40,9 @@ interface CompleteMessage {
 })
 export class AccountDetailsComponent {
 
-  router: Router = inject(Router);
+  private readonly router: Router = inject(Router);
+  private readonly employerService: EmployerService = inject(EmployerService);
+  private readonly destroyRef: DestroyRef = inject(DestroyRef);
 
   isAccount = false;
   isCompany = false;
@@ -53,12 +56,15 @@ export class AccountDetailsComponent {
   incompleteSections: NavTabs[] = IncompleteSections;
   activeTab: string = 'tabs-with-card-item-1';
 
-  setActiveTab(tabId: string) {
-    this.activeTab = tabId;
-  }
-
   get isComplete(): boolean {
     return !!(this.accountId && this.addressId && this.companyId);
+  }
+
+  findEmployer(): void {
+  }
+
+  setActiveTab(tabId: string) {
+    this.activeTab = tabId;
   }
 
   completeConditions(item: NavTabs): boolean | string | undefined {

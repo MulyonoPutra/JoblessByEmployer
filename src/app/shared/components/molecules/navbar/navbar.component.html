@@ -2,7 +2,7 @@
 <header>
   <div>
     <div class="containers">
-      <a class="inline-flex items-center justify-center gap-2 text-sm font-medium text-scarlet hover:text-seance-500" href="#">
+      <a class="dropdown-i18n" href="#">
       <svg-icon src="../../../../../assets/icons/world-sm.svg" svgClass="flex-shrink-0 size-3.5" />
         English (US)
       </a>
@@ -20,28 +20,29 @@
         </button>
       </div>
     </div>
-    <div id="navbar-collapse-with-animation" class="hidden overflow-hidden transition-all duration-300 hs-collapse basis-full grow sm:block">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end sm:ps-7">
+    <div id="navbar-collapse-with-animation" class="hs-collapse menu">
+      <div class="wrapper">
         <a class="py-3 font-medium text-scarlet ps-px sm:px-3 sm:py-6 hover:text-seance-500"
-          [routerLink]="'/'">Home</a>
+          [routerLink]="'/'" [routerLinkActive]="'router-link-active'" [routerLinkActiveOptions]="{ exact: true }">Home</a>
         <a class="py-3 font-medium text-scarlet ps-px sm:px-3 sm:py-6 hover:text-seance-500"
-          [routerLink]="'/jobs/manage'">Jobs</a>
+          [routerLink]="'/jobs/manage'" [routerLinkActive]="'router-link-active'">Jobs</a>
 
         <div class="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] py-3 ps-px sm:ps-3 sm:py-6">
-          <button type="button" class="flex items-center w-full font-medium text-scarlet hover:text-seance-500">
+          <a  class="flex items-center w-full font-medium text-scarlet hover:text-seance-500">
             Mulyono
-            <svg class="flex-shrink-0 ms-2 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+            <svg-icon src="../../../../../assets/icons/arrow-down.svg" svgClass="flex-shrink-0 ms-2 size-4"></svg-icon>
+          </a>
 
           <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 sm: before:absolute top-full sm:border before:-top-5 before:start-0 before:w-full before:h-5">
-            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-blue-500" routerLink="/account/details">
+            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
+            [routerLink]="'/account/details'" [routerLinkActive]="'router-link-active'" [routerLinkActiveOptions]="{ exact: true }">
               Account Details
             </a>
 
-            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-blue-500" routerLink="">
+            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500" routerLink="">
               Contact Us
             </a>
-            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-blue-500" routerLink="">
+            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500" routerLink="">
               Logout
             </a>
           </div>

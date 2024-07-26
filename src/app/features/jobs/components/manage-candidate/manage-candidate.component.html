@@ -1,0 +1,13 @@
+<ng-container>
+  <div class="mb-8 text-start">
+    <h2 class="text-xl font-bold text-scarlet md:text-3xl">
+      Manage candidate applications (optional)
+    </h2>
+    <p class="text-sm text-scarlet-900">
+      Enter your job details or let us guide you through what to write.
+    </p>
+  </div>
+  <div>
+    <app-form-input-field [formGroup]="form" [label]="'Internal job reference (optional)'" fieldName="reference" />
+  </div>
+</ng-container>

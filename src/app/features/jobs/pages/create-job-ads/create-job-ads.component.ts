@@ -9,15 +9,18 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { JobAdService } from "../../../../core/services/job-ad.service";
 import { JobDescDto } from "../../../../core/domain/dto/job-desc.dto";
 import { JobDescriptionFormComponent } from "../../components/job-description-form/job-description-form.component";
+import { ManageCandidateComponent } from '../../components/manage-candidate/manage-candidate.component';
+import { ReferenceDto } from '../../../../core/domain/dto/reference.dto';
 import { Router } from "@angular/router";
 import { TableModule } from 'primeng/table';
 import { ToastService } from "../../../../shared/services/toast.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+
 @Component({
   selector: 'app-create-job-ads',
   standalone: true,
   imports: [
-    CommonModule, TableModule, AngularSvgIconModule, ClassifyFormComponent, JobDescriptionFormComponent
+    CommonModule, TableModule, AngularSvgIconModule, ClassifyFormComponent, JobDescriptionFormComponent, ManageCandidateComponent
   ],
   templateUrl: './create-job-ads.component.html',
   styleUrls: ['./create-job-ads.component.scss'],
@@ -27,6 +30,7 @@ export class CreateJobAdsComponent {
   createJobAds!: CreateJobAdsDto;
   classifyDto!: ClassifyDto;
   jobDescDto!: JobDescDto;
+  referenceDto!: ReferenceDto;
 
   constructor(
     private readonly jobAdService: JobAdService,
@@ -58,6 +62,10 @@ export class CreateJobAdsComponent {
 
   jobDescData(data: JobDescDto) {
     this.jobDescDto = data;
+  }
+
+  referenceData(data: ReferenceDto) {
+    this.referenceDto = data;
   }
 
 }
