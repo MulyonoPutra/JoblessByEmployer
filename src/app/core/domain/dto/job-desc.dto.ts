@@ -1,4 +1,4 @@
 export interface JobDescDto {
-  description: string;
-  requirements: string;
+    description: string;
+    requirements: string;
 }

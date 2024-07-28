@@ -1,11 +1,11 @@
 :host {
-  display: block;
+    display: block;
 }
 
 .form-button {
-  @apply mt-4 inline-flex items-center px-3 py-2 text-sm font-semibold text-scarlet-600 border border-scarlet-600 rounded-lg gap-x-2 hover:border-scarlet-500 hover:text-scarlet-500 disabled:opacity-50 disabled:pointer-events-none;
+    @apply mt-4 inline-flex items-center px-3 py-2 text-sm font-semibold text-scarlet-600 border border-scarlet-600 rounded-lg gap-x-2 hover:border-scarlet-500 hover:text-scarlet-500 disabled:opacity-50 disabled:pointer-events-none;
 }
 
 .stepper {
-  @apply flex items-center justify-center font-medium text-gray-800 bg-gray-100 rounded-full size-7 shrink-0 group-focus:bg-gray-200 hs-stepper-active:bg-seance-700 hs-stepper-active:text-white hs-stepper-success:bg-seance-700 hs-stepper-success:text-white hs-stepper-completed:bg-scarlet hs-stepper-completed:group-focus:bg-scarlet-600;
+    @apply flex items-center justify-center font-medium text-gray-800 bg-gray-100 rounded-full size-7 shrink-0 group-focus:bg-gray-200 hs-stepper-active:bg-seance-700 hs-stepper-active:text-white hs-stepper-success:bg-seance-700 hs-stepper-success:text-white hs-stepper-completed:bg-scarlet hs-stepper-completed:group-focus:bg-scarlet-600;
 }

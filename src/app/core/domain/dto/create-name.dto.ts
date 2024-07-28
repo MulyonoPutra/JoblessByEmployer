@@ -1,3 +1,3 @@
 export interface CreateAccountDto {
-  accountName: string;
+    accountName: string;
 }

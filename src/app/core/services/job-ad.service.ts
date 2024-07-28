@@ -8,21 +8,20 @@ import { environment } from '../../../environments/environment.development';
 import { handlerHttpError } from '../utility/http-handle-error';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class JobAdService {
+    endpoint = environment.endpoint;
 
-  endpoint = environment.endpoint;
+    constructor(
+        private readonly http: HttpClient,
+        private readonly storageService: StorageService,
+    ) {}
 
-  constructor(
-    private readonly http: HttpClient,
-    private readonly storageService: StorageService
-  ) { }
-
-  createJobAd(body: CreateJobAdsDto): Observable<unknown> {
-    const employerId = this.storageService.getEmployerIdentity();
-    return this.http.post(`${this.endpoint}/employer/job-ads/${employerId}`, body).pipe(
-      catchError((error: HttpErrorResponse) => handlerHttpError(error)),
-    );
-  }
+    createJobAd(body: CreateJobAdsDto): Observable<unknown> {
+        const employerId = this.storageService.getEmployerIdentity();
+        return this.http
+            .post(`${this.endpoint}/employer/job-ads/${employerId}`, body)
+            .pipe(catchError((error: HttpErrorResponse) => handlerHttpError(error)));
+    }
 }

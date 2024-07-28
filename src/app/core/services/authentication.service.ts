@@ -22,7 +22,7 @@ export class AuthenticationService {
     constructor(
         private readonly http: HttpClient,
         private readonly storageService: StorageService,
-        private toastService: ToastService
+        private toastService: ToastService,
     ) {}
 
     login(body: LoginDto): Observable<HttpResponseEntity<Credentials>> {
@@ -66,8 +66,8 @@ export class AuthenticationService {
     generateRefreshToken(refreshToken: string): Observable<HttpResponseEntity<Credentials>> {
         if (!refreshToken) {
             return throwError(() => {
-              console.error('Refresh token not found!')
-              return this.toastService.showErrorToast('Error', 'Refresh token not found');
+                console.error('Refresh token not found!');
+                return this.toastService.showErrorToast('Error', 'Refresh token not found');
             });
         }
 

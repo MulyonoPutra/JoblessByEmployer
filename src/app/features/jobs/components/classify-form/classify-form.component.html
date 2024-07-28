@@ -1,29 +1,35 @@
 <form [formGroup]="form">
-  <div class="w-full">
-    <app-form-input-field [formGroup]="form" [label]="'Title'" fieldName="title" />
-    <app-number-field [formGroup]="form" [label]="'Salary'" fieldName="salary" />
+    <div class="w-full">
+        <app-form-input-field [formGroup]="form" [label]="'Title'" fieldName="title" />
+        <app-number-field [formGroup]="form" [label]="'Salary'" fieldName="salary" />
 
-    <div class="flex flex-col space-y-3">
-      <span class="ml-2 font-semibold text">Work Type</span>
-      @for (type of workTypes; track $index) {
-      <div>
-        <p-radioButton [inputId]="type.key" [value]="type.name" formControlName="workType" />
-        <label [for]="type.key" class="ml-2 text">
-          {{ type.name }}
-        </label>
-      </div>
-      }
+        <div class="flex flex-col space-y-3">
+            <span class="ml-2 font-semibold text">Work Type</span>
+            @for (type of workTypes; track $index) {
+                <div>
+                    <p-radioButton
+                        [inputId]="type.key"
+                        [value]="type.name"
+                        formControlName="workType" />
+                    <label [for]="type.key" class="ml-2 text">
+                        {{ type.name }}
+                    </label>
+                </div>
+            }
+        </div>
+        <div class="flex flex-col mt-4 space-y-3">
+            <span class="ml-2 font-semibold text">Work Type</span>
+            @for (type of payTypes; track $index) {
+                <div>
+                    <p-radioButton
+                        [inputId]="type.key"
+                        [value]="type.name"
+                        formControlName="payType" />
+                    <label [for]="type.key" class="ml-2 text">
+                        {{ type.name }}
+                    </label>
+                </div>
+            }
+        </div>
     </div>
-    <div class="flex flex-col mt-4 space-y-3">
-      <span class="ml-2 font-semibold text">Work Type</span>
-      @for (type of payTypes; track $index) {
-      <div>
-        <p-radioButton [inputId]="type.key" [value]="type.name" formControlName="payType" />
-        <label [for]="type.key" class="ml-2 text">
-          {{ type.name }}
-        </label>
-      </div>
-      }
-    </div>
-  </div>
 </form>

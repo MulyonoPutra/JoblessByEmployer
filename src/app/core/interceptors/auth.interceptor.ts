@@ -48,7 +48,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 ) {
                     return this.handle401Unauthorized(request, next);
                 }
-                const errors = error.error.message || error.statusText;
+                const errors = error.error?.message || error.statusText;
                 return throwError(() => errors);
             }),
         );

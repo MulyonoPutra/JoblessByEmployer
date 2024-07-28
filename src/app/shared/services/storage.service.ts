@@ -74,7 +74,7 @@ export class StorageService {
     }
 
     public setEmployerIdentity(id: string): void {
-      this.employerId = id;
+        this.employerId = id;
         sessionStorage.removeItem(AuthKey.EmployerId);
         sessionStorage.setItem(AuthKey.EmployerId, id);
     }

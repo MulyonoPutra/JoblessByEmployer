@@ -1,9 +1,9 @@
 <div [formGroup]="formGroup" class="py-2">
     <p-editor
-      [style]="{ height: '320px' }"
-      [formControlName]="fieldName"
-      class="w-full"
-      [ngClass]="{ 'p-invalid': isInvalid }">
+        [style]="{ height: '320px' }"
+        [formControlName]="fieldName"
+        class="w-full"
+        [ngClass]="{ 'p-invalid': isInvalid }">
     </p-editor>
-  <div *ngIf="isInvalid" class="error-message">{{ getErrorMessage }}</div>
+    <div *ngIf="isInvalid" class="error-message">{{ getErrorMessage }}</div>
 </div>

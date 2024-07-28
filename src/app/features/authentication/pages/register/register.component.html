@@ -1,54 +1,64 @@
 <div class="flex h-screen bg-gradient-to-bl from-blue-900 via-transparent">
-  <div class="flex items-center justify-center w-full bg-gray-100 lg:w-1/2">
-    <div class="w-full max-w-md p-6">
-      <h1 class="text-3xl font-bold text-scarlet md:text-4xl md:leading-tight lg:text-5xl lg:leading-tight dark:text-neutral-200">
-        Streamline Your Recruitment Process
-      </h1>
-      <p class="mt-3 text-base text-scarlet-900">
-        Leverage the power of Preline to create and manage job listings effortlessly. Log in to access your employer dashboard and start finding the right talent in no time.
-      </p>
-      <form [formGroup]="form" class="space-y-4">
-                                <div class="col-span-full">
-                                    <app-form-input-field
-                                        class="mt-2"
-                                        [formGroup]="form"
-                                        [label]="'Name'"
-                                        fieldName="name" />
-                                    <app-form-input-field
-                                        class="mt-2"
-                                        [formGroup]="form"
-                                        [label]="'Email'"
-                                        fieldName="email" />
-                                    <app-form-password-field
-                                        class="mt-4"
-                                        [formGroup]="form"
-                                        [label]="'Password'"
-                                        fieldName="password" />
-                                    <app-form-password-field
-                                        class="mt-4"
-                                        [formGroup]="form"
-                                        [label]="'Confirm Password'"
-                                        fieldName="confirmPassword" />
-                                </div>
-        <div>
-                                    <app-button
-                                        [isLoading]="isLoading"
-                                        (clicked)="onSubmit()"
-                                        [label]="'Sign Up'"
-                                        [isCancel]="false"
-                                        [isLarge]="true"
-                                        [isDisabled]="form.invalid!"
-                                        [type]="'save'" />
+    <div class="flex items-center justify-center w-full bg-gray-100 lg:w-1/2">
+        <div class="w-full max-w-md p-6">
+            <h1
+                class="text-3xl font-bold text-scarlet md:text-4xl md:leading-tight lg:text-5xl lg:leading-tight dark:text-neutral-200">
+                Streamline Your Recruitment Process
+            </h1>
+            <p class="mt-3 text-base text-scarlet-900">
+                Leverage the power of Preline to create and manage job listings effortlessly. Log in
+                to access your employer dashboard and start finding the right talent in no time.
+            </p>
+            <form [formGroup]="form" class="space-y-4">
+                <div class="col-span-full">
+                    <app-form-input-field
+                        class="mt-2"
+                        [formGroup]="form"
+                        [label]="'Name'"
+                        fieldName="name" />
+                    <app-form-input-field
+                        class="mt-2"
+                        [formGroup]="form"
+                        [label]="'Email'"
+                        fieldName="email" />
+                    <app-form-password-field
+                        class="mt-4"
+                        [formGroup]="form"
+                        [label]="'Password'"
+                        fieldName="password" />
+                    <app-form-password-field
+                        class="mt-4"
+                        [formGroup]="form"
+                        [label]="'Confirm Password'"
+                        fieldName="confirmPassword" />
+                </div>
+                <div>
+                    <app-button
+                        [isLoading]="isLoading"
+                        (clicked)="onSubmit()"
+                        [label]="'Sign Up'"
+                        [isCancel]="false"
+                        [isLarge]="true"
+                        [isDisabled]="form.invalid!"
+                        [type]="'save'" />
+                </div>
+            </form>
+            <div class="mt-4 text-sm text-center text-scarlet-600">
+                <p>
+                    Already have an account?
+                    <a
+                        routerLink="/auth/login"
+                        class="font-semibold cursor-pointer text-scarlet hover:underline hover:underline-offset-1"
+                        >Login here</a
+                    >
+                </p>
+            </div>
         </div>
-      </form>
-      <div class="mt-4 text-sm text-center text-scarlet-600">
-        <p>Already have an account?
-          <a routerLink="/auth/login" class="font-semibold cursor-pointer text-scarlet hover:underline hover:underline-offset-1">Login here</a>
-        </p>
-      </div>
     </div>
-  </div>
-  <div class="hidden h-full lg:block lg:w-1/2">
-    <img src="https://images.unsplash.com/photo-1606868306217-dbf5046868d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80" alt="Background" class="object-cover w-full h-full">
-  </div>
+    <div class="hidden h-full lg:block lg:w-1/2">
+        <img
+            src="https://images.unsplash.com/photo-1606868306217-dbf5046868d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80"
+            alt="Background"
+            class="object-cover w-full h-full" />
+    </div>
 </div>

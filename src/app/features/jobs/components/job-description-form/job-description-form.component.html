@@ -1,25 +1,18 @@
 <ng-container>
-  <div class="mb-8 text-start">
-    <h2 class="text-xl font-bold text-scarlet md:text-3xl">
-      Job description
-    </h2>
-    <p class="text-sm text-scarlet-900">
-      Enter your job details or let us guide you through what to write.
-    </p>
-  </div>
+    <div class="mb-8 text-start">
+        <h2 class="text-xl font-bold text-scarlet md:text-3xl">Job description</h2>
+        <p class="text-sm text-scarlet-900">
+            Enter your job details or let us guide you through what to write.
+        </p>
+    </div>
 
-  <div>
-    <span class="mt-4 text-sm font-semibold text-scarlet-900">
-      Job Description
-    </span>
-    <app-editor [formGroup]="form" label="Job Description" fieldName="description" />
-  </div>
+    <div>
+        <span class="mt-4 text-sm font-semibold text-scarlet-900"> Job Description </span>
+        <app-editor [formGroup]="form" label="Job Description" fieldName="description" />
+    </div>
 
-  <div>
-    <span class="mt-4 text-sm font-semibold text-scarlet-900">
-      Job Summary
-    </span>
-    <app-editor [formGroup]="form" label="Job Summary" fieldName="requirements" />
-  </div>
-
+    <div>
+        <span class="mt-4 text-sm font-semibold text-scarlet-900"> Job Summary </span>
+        <app-editor [formGroup]="form" label="Job Summary" fieldName="requirements" />
+    </div>
 </ng-container>

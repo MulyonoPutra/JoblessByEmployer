@@ -1,89 +1,64 @@
 <div class="border-b border-gray-200">
-  <nav
-    class="flex gap-x-1"
-    aria-label="Tabs"
-    role="tablist"
-    aria-orientation="horizontal"
-  >
-    <button
-      type="button"
-      class="tabs active"
-      id="card-type-tab-item-1"
-      aria-selected="true"
-      data-hs-tab="#card-type-tab-preview"
-      aria-controls="card-type-tab-preview"
-      role="tab"
-    >
-      Open
-    </button>
-    <button
-      type="button"
-      class="tabs"
-      id="card-type-tab-item-2"
-      aria-selected="false"
-      data-hs-tab="#card-type-tab-2"
-      aria-controls="card-type-tab-2"
-      role="tab"
-    >
-      Expired
-    </button>
-    <button
-      type="button"
-      class="tabs"
-      id="card-type-tab-item-3"
-      aria-selected="false"
-      data-hs-tab="#card-type-tab-3"
-      aria-controls="card-type-tab-3"
-      role="tab"
-    >
-      Draft
-    </button>
-  </nav>
+    <nav class="flex gap-x-1" aria-label="Tabs" role="tablist" aria-orientation="horizontal">
+        <button
+            type="button"
+            class="tabs active"
+            id="card-type-tab-item-1"
+            aria-selected="true"
+            data-hs-tab="#card-type-tab-preview"
+            aria-controls="card-type-tab-preview"
+            role="tab">
+            Open
+        </button>
+        <button
+            type="button"
+            class="tabs"
+            id="card-type-tab-item-2"
+            aria-selected="false"
+            data-hs-tab="#card-type-tab-2"
+            aria-controls="card-type-tab-2"
+            role="tab">
+            Expired
+        </button>
+        <button
+            type="button"
+            class="tabs"
+            id="card-type-tab-item-3"
+            aria-selected="false"
+            data-hs-tab="#card-type-tab-3"
+            aria-controls="card-type-tab-3"
+            role="tab">
+            Draft
+        </button>
+    </nav>
 </div>
 
 <div class="mt-3">
-  <div
-    id="card-type-tab-preview"
-    role="tabpanel"
-    aria-labelledby="card-type-tab-item-1"
-  >
-    <app-table
-      [columns]="columns"
-      [records]="data"
-      [filter]="['name']"
-      (created)="onCreate()"
-      (edited)="onEdit()"
-      (deleted)="onDelete()"
-    />
-  </div>
-  <div
-    id="card-type-tab-2"
-    class="hidden"
-    role="tabpanel"
-    aria-labelledby="card-type-tab-item-2"
-  >
-    <app-table
-      [columns]="columns"
-      [records]="data"
-      [filter]="['name']"
-      (created)="onCreate()"
-      (edited)="onEdit()"
-      (deleted)="onDelete()"
-    />
-  </div>
-  <div
-    id="card-type-tab-3"
-    class="hidden"
-    role="tabpanel"
-    aria-labelledby="card-type-tab-item-3"
-  >
-    <app-table
-      [columns]="columns"
-      [records]="data"
-      [filter]="['name']"
-      (created)="onCreate()"
-      (edited)="onEdit()"
-      (deleted)="onDelete()"
-    />
-  </div>
+    <div id="card-type-tab-preview" role="tabpanel" aria-labelledby="card-type-tab-item-1">
+        <app-table
+            [columns]="columns"
+            [records]="data"
+            [filter]="['name']"
+            (created)="onCreate()"
+            (edited)="onEdit()"
+            (deleted)="onDelete()" />
+    </div>
+    <div id="card-type-tab-2" class="hidden" role="tabpanel" aria-labelledby="card-type-tab-item-2">
+        <app-table
+            [columns]="columns"
+            [records]="data"
+            [filter]="['name']"
+            (created)="onCreate()"
+            (edited)="onEdit()"
+            (deleted)="onDelete()" />
+    </div>
+    <div id="card-type-tab-3" class="hidden" role="tabpanel" aria-labelledby="card-type-tab-item-3">
+        <app-table
+            [columns]="columns"
+            [records]="data"
+            [filter]="['name']"
+            (created)="onCreate()"
+            (edited)="onEdit()"
+            (deleted)="onDelete()" />
+    </div>
 </div>

@@ -1,55 +1,86 @@
-
 <header>
-  <div>
-    <div class="containers">
-      <a class="dropdown-i18n" href="#">
-      <svg-icon src="../../../../../assets/icons/world-sm.svg" svgClass="flex-shrink-0 size-3.5" />
-        English (US)
-      </a>
-      <a class="underline-btn" routerLink="auth/login">Sign In</a>
-      <a class="btn-violet" routerLink="/jobs/create">Create Job Ads</a>
-    </div>
-  </div>
-  <nav aria-label="Global">
-    <div class="flex items-center justify-between">
-      <app-logo [style]="'w-22 h-16'" />
-      <div class="sm:hidden">
-        <button type="button" class="toggle hs-collapse-toggle" data-hs-collapse="#navbar-collapse-with-animation" aria-controls="navbar-collapse-with-animation" aria-label="Toggle navigation">
-          <svg-icon src="../../../../../assets/icons/hamburger.svg" svgClass="icons hs-collapse-open:hidden" />
-          <svg-icon src="../../../../../assets/icons/close-sm.svg" svgClass="icons hidden hs-collapse-open:block" />
-        </button>
-      </div>
-    </div>
-    <div id="navbar-collapse-with-animation" class="hs-collapse menu">
-      <div class="wrapper">
-        <a class="py-3 font-medium text-scarlet ps-px sm:px-3 sm:py-6 hover:text-seance-500"
-          [routerLink]="'/'" [routerLinkActive]="'router-link-active'" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-        <a class="py-3 font-medium text-scarlet ps-px sm:px-3 sm:py-6 hover:text-seance-500"
-          [routerLink]="'/jobs/manage'" [routerLinkActive]="'router-link-active'">Jobs</a>
-
-        <div class="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] py-3 ps-px sm:ps-3 sm:py-6">
-          <a  class="flex items-center w-full font-medium text-scarlet hover:text-seance-500">
-            Mulyono
-            <svg-icon src="../../../../../assets/icons/arrow-down.svg" svgClass="flex-shrink-0 ms-2 size-4"></svg-icon>
-          </a>
-
-          <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 sm: before:absolute top-full sm:border before:-top-5 before:start-0 before:w-full before:h-5">
-            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
-            [routerLink]="'/account/details'" [routerLinkActive]="'router-link-active'" [routerLinkActiveOptions]="{ exact: true }">
-              Account Details
+    <div>
+        <div class="containers">
+            <a class="dropdown-i18n" href="#">
+                <svg-icon
+                    src="../../../../../assets/icons/world-sm.svg"
+                    svgClass="flex-shrink-0 size-3.5" />
+                English (US)
             </a>
-
-            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500" routerLink="">
-              Contact Us
-            </a>
-            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500" routerLink="">
-              Logout
-            </a>
-          </div>
+            <a class="underline-btn" routerLink="auth/login">Sign In</a>
+            <a class="btn-violet" routerLink="/jobs/create">Create Job Ads</a>
         </div>
-
-
-      </div>
     </div>
-  </nav>
+    <nav aria-label="Global">
+        <div class="flex items-center justify-between">
+            <app-logo [style]="'w-22 h-16'" />
+            <div class="sm:hidden">
+                <button
+                    type="button"
+                    class="toggle hs-collapse-toggle"
+                    data-hs-collapse="#navbar-collapse-with-animation"
+                    aria-controls="navbar-collapse-with-animation"
+                    aria-label="Toggle navigation">
+                    <svg-icon
+                        src="../../../../../assets/icons/hamburger.svg"
+                        svgClass="icons hs-collapse-open:hidden" />
+                    <svg-icon
+                        src="../../../../../assets/icons/close-sm.svg"
+                        svgClass="icons hidden hs-collapse-open:block" />
+                </button>
+            </div>
+        </div>
+        <div id="navbar-collapse-with-animation" class="hs-collapse menu">
+            <div class="wrapper">
+                <a
+                    class="py-3 font-medium text-scarlet ps-px sm:px-3 sm:py-6 hover:text-seance-500"
+                    [routerLink]="'/'"
+                    [routerLinkActive]="'router-link-active'"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    >Home</a
+                >
+                <a
+                    class="py-3 font-medium text-scarlet ps-px sm:px-3 sm:py-6 hover:text-seance-500"
+                    [routerLink]="'/jobs/manage'"
+                    [routerLinkActive]="'router-link-active'"
+                    >Jobs</a
+                >
+
+                <div
+                    class="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] py-3 ps-px sm:ps-3 sm:py-6">
+                    <a
+                        class="flex items-center w-full font-medium text-scarlet hover:text-seance-500">
+                        Mulyono
+                        <svg-icon
+                            src="../../../../../assets/icons/arrow-down.svg"
+                            svgClass="flex-shrink-0 ms-2 size-4"></svg-icon>
+                    </a>
+
+                    <div
+                        class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 sm: before:absolute top-full sm:border before:-top-5 before:start-0 before:w-full before:h-5">
+                        <a
+                            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
+                            [routerLink]="'/account/details'"
+                            [routerLinkActive]="'router-link-active'"
+                            [routerLinkActiveOptions]="{ exact: true }">
+                            Account Details
+                        </a>
+
+                        <a
+                            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
+                            [routerLink]="'/contact'"
+                            [routerLinkActive]="'router-link-active'"
+                            [routerLinkActiveOptions]="{ exact: true }">
+                            Contact Us
+                        </a>
+                        <a
+                            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
+                            routerLink="">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 </header>

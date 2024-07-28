@@ -1,7 +1,7 @@
 :host {
-  display: block;
+    display: block;
 }
 
 .tab-rounded {
-  @apply -mb-px py-3 px-4 inline-flex items-center gap-2 bg-white text-sm font-medium text-center border border-b-transparent text-blue-600 rounded-t-lg focus:outline-none;
+    @apply -mb-px py-3 px-4 inline-flex items-center gap-2 bg-white text-sm font-medium text-center border border-b-transparent text-blue-600 rounded-t-lg focus:outline-none;
 }

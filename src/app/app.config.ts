@@ -9,13 +9,13 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    MessageService,
-    Providers,
-    provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations(),
-    importProvidersFrom(BrowserAnimationsModule),
-    provideRouter(routes),
-    provideAngularSvgIcon(),
-  ]
+    providers: [
+        MessageService,
+        Providers,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideAnimations(),
+        importProvidersFrom(BrowserAnimationsModule),
+        provideRouter(routes),
+        provideAngularSvgIcon(),
+    ],
 };

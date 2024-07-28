@@ -12,78 +12,77 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { User } from '../../domain/entities/user';
 
 @Component({
-  selector: 'app-main',
-  standalone: true,
-  imports: [
-    CommonModule, RouterOutlet, NavbarComponent, FooterComponent
-  ],
-  template: `
-    <div class="flex flex-col h-screen justify-between">
-      <app-navbar></app-navbar>
-          <main>
-        <div
-          [ngClass]="{
-            'max-w-[55rem]': !isFullWidthRoute,
-            'max-w-[85rem]': isFullWidthRoute,
-          }"
-          class="mx-auto pt-4 pb-10 px-4 sm:px-6 lg:px-8 md:pt-2">
-          <router-outlet></router-outlet>
+    selector: 'app-main',
+    standalone: true,
+    imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent],
+    template: `
+        <div class="flex flex-col h-screen justify-between">
+            <app-navbar></app-navbar>
+            <main>
+                <div
+                    [ngClass]="{
+                        'max-w-[55rem]': !isFullWidthRoute,
+                        'max-w-[85rem]': isFullWidthRoute,
+                    }"
+                    class="mx-auto pt-4 pb-10 px-4 sm:px-6 lg:px-8 md:pt-2">
+                    <router-outlet></router-outlet>
+                </div>
+            </main>
+            <app-footer></app-footer>
         </div>
-      </main>
-      <app-footer></app-footer>
-    </div>
-  `,
-  styleUrls: ['./main.component.scss'],
+    `,
+    styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+    user!: User;
+    private currentRoute!: string;
+    private fullWidthRoutes: string[] = ['/', '/account/details', '/jobs/manage'];
 
-  user!: User;
-  private currentRoute!: string;
-  private fullWidthRoutes: string[] = ['/', '/account/details', '/jobs/manage'];
+    constructor(
+        private readonly router: Router,
+        private readonly destroyRef: DestroyRef,
+        private readonly profileService: ProfileService,
+        private readonly storageService: StorageService,
+        private readonly authService: AuthenticationService,
+        private readonly toastService: ToastService,
+    ) {
+        this.trackRouteChanges();
+    }
 
-  constructor(
-    private readonly router: Router,
-    private readonly destroyRef: DestroyRef,
-    private readonly profileService: ProfileService,
-    private readonly storageService: StorageService,
-    private readonly authService: AuthenticationService,
-    private readonly toastService: ToastService,
-  ) {
-    this.trackRouteChanges();
-  }
+    ngOnInit(): void {}
 
-  ngOnInit(): void { }
+    trackRouteChanges(): void {
+        this.router.events.subscribe((event: Event) => {
+            if (event instanceof NavigationEnd) {
+                this.currentRoute = event.urlAfterRedirects;
+            }
+        });
+    }
 
-  trackRouteChanges(): void {
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationEnd) {
-        this.currentRoute = event.urlAfterRedirects;
-      }
-    });
-  }
+    get isFullWidthRoute(): boolean {
+        return this.fullWidthRoutes.includes(this.currentRoute);
+    }
 
-  get isFullWidthRoute(): boolean {
-    return this.fullWidthRoutes.includes(this.currentRoute);
-  }
-
-  findUser(): void {
-    this.profileService
-      .findUser()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (user: User) => {
-          this.user = user;
-          if (this.user.employer) {
-            this.storageService.setEmployerIdentity(this.user.employer.id);
-          } else {
-            this.toastService.showWarnToast('Warning', 'Employer information is not available.')
-          }
-        },
-        error: (error: HttpErrorResponse) => {
-          this.toastService.showErrorToast('Error', error.message);
-        },
-        complete: () => { },
-      });
-  }
-
+    findUser(): void {
+        this.profileService
+            .findUser()
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: (user: User) => {
+                    this.user = user;
+                    if (this.user.employer) {
+                        this.storageService.setEmployerIdentity(this.user.employer.id);
+                    } else {
+                        this.toastService.showWarnToast(
+                            'Warning',
+                            'Employer information is not available.',
+                        );
+                    }
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.toastService.showErrorToast('Error', error.message);
+                },
+                complete: () => {},
+            });
+    }
 }
