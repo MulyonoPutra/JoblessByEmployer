@@ -27,12 +27,15 @@ export class JobAdService {
             .pipe(catchError((error: HttpErrorResponse) => handlerHttpError(error)));
     }
 
-  findJobAdsByEmployerId(status: string): Observable<JobAds[]>{
-    const employerId = this.storageService.getEmployerIdentity();
-    return this.http
-      .get<HttpResponseEntity<JobAds[]>>(`${this.endpoint}/employer/job-ads/${employerId}?status=${status}`)
-      .pipe(
-        map((response) => response.data),
-        catchError((error: HttpErrorResponse) => handlerHttpError(error)));
+    findJobAdsByEmployerId(status: string): Observable<JobAds[]> {
+        const employerId = this.storageService.getEmployerIdentity();
+        return this.http
+            .get<
+                HttpResponseEntity<JobAds[]>
+            >(`${this.endpoint}/employer/job-ads/${employerId}?status=${status}`)
+            .pipe(
+                map((response) => response.data),
+                catchError((error: HttpErrorResponse) => handlerHttpError(error)),
+            );
     }
 }

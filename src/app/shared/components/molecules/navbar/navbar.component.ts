@@ -15,20 +15,20 @@ import { User } from '../../../../core/domain/entities/user';
     styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  private readonly storageService: StorageService = inject(StorageService);
-  private readonly router: Router = inject(Router);
+    private readonly storageService: StorageService = inject(StorageService);
+    private readonly router: Router = inject(Router);
 
-  @Input() user!: User;
+    @Input() user!: User;
 
-  get employerId(): string {
-    return this.storageService.getEmployerIdentity();
-  }
-
-  navigate(){
-    if(this.user.employer.accountName == null){
-      this.router.navigate(['/account/details']);
-    } else {
-      this.router.navigate(['/jobs/create']);
+    get employerId(): string {
+        return this.storageService.getEmployerIdentity();
     }
-  }
+
+    navigate() {
+        if (this.user.employer.accountName == null) {
+            this.router.navigate(['/account/details']);
+        } else {
+            this.router.navigate(['/jobs/create']);
+        }
+    }
 }

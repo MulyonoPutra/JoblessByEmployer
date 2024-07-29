@@ -50,7 +50,7 @@ export class MainComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.findUser();
+        this.findUser();
     }
 
     trackRouteChanges(): void {

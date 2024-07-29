@@ -16,61 +16,67 @@ import { JobAds } from '../../../../core/domain/entities/job-ads';
     styleUrls: ['./manage-job-ads.component.scss'],
 })
 export class ManageJobAdsComponent implements OnInit {
-
-  constructor(
-    private readonly router: Router,
-    private readonly toastService: ToastService,
-    private readonly destroyRef: DestroyRef,
-    private readonly jobAdService: JobAdService
-  ){}
+    constructor(
+        private readonly router: Router,
+        private readonly toastService: ToastService,
+        private readonly destroyRef: DestroyRef,
+        private readonly jobAdService: JobAdService,
+    ) {}
 
     data!: JobAds[];
-  filterFields: string[] = [];
+    filterFields: string[] = [];
     columns!: any[];
 
     ngOnInit() {
-        this.findJobAdsByEmployerId('open')
+        this.findJobAdsByEmployerId('open');
     }
 
     sendStatus(status: string) {
-      this.findJobAdsByEmployerId(status)
+        this.findJobAdsByEmployerId(status);
     }
 
     findJobAdsByEmployerId(status: string): void {
-      this.jobAdService.findJobAdsByEmployerId(status)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-          next: (data: JobAds[]) => {
-            this.data = data;
-            this.setColumns();
-          },
-          error: (error: HttpErrorResponse) => {
-            this.toastService.showErrorToast('Error', error.message);
-          },
-          complete: () => {},
-        }
-        )}
-
-  private setColumns() {
-    const hideFields = ['description', 'requirements', 'employer', 'createdAt', 'updatedAt', 'status'];
-    if (this.data.length > 0) {
-      this.columns = Object.keys(this.data[0])
-        .filter(key => !hideFields.includes(key))
-        .map(key => ({
-          field: key,
-          header: this.toHeader(key)
-        }));
-      this.filterFields = this.columns.map(column => column.field);
+        this.jobAdService
+            .findJobAdsByEmployerId(status)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: (data: JobAds[]) => {
+                    this.data = data;
+                    this.setColumns();
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.toastService.showErrorToast('Error', error.message);
+                },
+                complete: () => {},
+            });
     }
-  }
 
-  toHeader(key: string): string {
-    return key.replace(/([A-Z])/g, ' $1')
-      .replace(/^./, str => str.toUpperCase());
-  }
+    private setColumns() {
+        const hideFields = [
+            'description',
+            'requirements',
+            'employer',
+            'createdAt',
+            'updatedAt',
+            'status',
+        ];
+        if (this.data.length > 0) {
+            this.columns = Object.keys(this.data[0])
+                .filter((key) => !hideFields.includes(key))
+                .map((key) => ({
+                    field: key,
+                    header: this.toHeader(key),
+                }));
+            this.filterFields = this.columns.map((column) => column.field);
+        }
+    }
+
+    toHeader(key: string): string {
+        return key.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase());
+    }
 
     onCreate() {
-      this.router.navigate(['/jobs/create']);
+        this.router.navigate(['/jobs/create']);
     }
 
     onEdit() {

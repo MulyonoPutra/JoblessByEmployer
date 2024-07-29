@@ -1,4 +1,4 @@
-import { Address } from "./address";
+import { Address } from './address';
 
 export interface Company {
     id?: string;
@@ -11,5 +11,5 @@ export interface Company {
     description: string;
     benefit: string;
     contactInfo: string;
-    address?: Address
+    address?: Address;
 }

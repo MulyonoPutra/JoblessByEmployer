@@ -31,7 +31,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     styleUrls: ['./create-job-ads.component.scss'],
 })
 export class CreateJobAdsComponent {
-  
     createJobAds!: CreateJobAdsDto;
     classifyDto!: ClassifyDto;
     jobDescDto!: JobDescDto;

@@ -45,7 +45,6 @@ interface CompleteMessage {
     styleUrls: ['./account-details.component.scss'],
 })
 export class AccountDetailsComponent implements OnInit {
-
     private readonly router: Router = inject(Router);
     private readonly employerService: EmployerService = inject(EmployerService);
     private readonly storageService: StorageService = inject(StorageService);
@@ -68,7 +67,7 @@ export class AccountDetailsComponent implements OnInit {
     activeTab: string = 'tabs-with-card-item-1';
 
     ngOnInit(): void {
-      this.findEmployer();
+        this.findEmployer();
     }
 
     get isComplete(): boolean {
@@ -76,23 +75,26 @@ export class AccountDetailsComponent implements OnInit {
     }
 
     findEmployer(): void {
-      const employerId = this.storageService.getEmployerIdentity();
-      this.employerService.findEmployer(employerId)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-          next: (employer: Employer) => {
-            this.employer = employer;
-            this.isAccount = this.employer.accountName === null;
-            this.isCompany = (this.employer.company && this.employer.company.id) === null;
-            this.isAddress = (this.employer.company.address && this.employer.company.address.id) === null;
+        const employerId = this.storageService.getEmployerIdentity();
+        this.employerService
+            .findEmployer(employerId)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: (employer: Employer) => {
+                    this.employer = employer;
+                    this.isAccount = this.employer.accountName === null;
+                    this.isCompany = (this.employer.company && this.employer.company.id) === null;
+                    this.isAddress =
+                        (this.employer.company.address && this.employer.company.address.id) ===
+                        null;
 
-            this.company = employer.company;
-          },
-          error: (error: HttpErrorResponse) => {
-            this.toastService.showErrorToast('Error', error.message);
-          },
-          complete: () => {},
-        })
+                    this.company = employer.company;
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.toastService.showErrorToast('Error', error.message);
+                },
+                complete: () => {},
+            });
     }
 
     setActiveTab(tabId: string) {
