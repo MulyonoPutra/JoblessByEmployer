@@ -81,7 +81,7 @@
 
                 <div data-hs-stepper-content-item='{ "index": 2 }' style="display: none">
                     @if (isCompany) {
-                        <app-company-detail-form (clicked)="toggleUpdate('company')" />
+                        <app-company-detail-form [companyId]="companyId" (clicked)="toggleUpdate('company')" />
                     } @else {
                         <app-company-detail-content
                             [company]="company"

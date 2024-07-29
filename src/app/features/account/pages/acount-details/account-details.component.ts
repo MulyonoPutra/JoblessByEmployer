@@ -58,10 +58,11 @@ export class AccountDetailsComponent implements OnInit {
     isCompany!: boolean;
     isAddress!: boolean;
 
+
     // Dev purpose
     accountId = '50030354-581d-46f4-8bc6-b61dc11605a4';
     addressId = '50030354-581d-46f4-8bc6-b61dc11605a4';
-    companyId = 'a';
+    companyId!: string;
 
     incompleteSections: NavTabs[] = IncompleteSections;
     activeTab: string = 'tabs-with-card-item-1';
@@ -89,6 +90,7 @@ export class AccountDetailsComponent implements OnInit {
                         null;
 
                     this.company = employer.company;
+                    this.companyId = employer.company.id!;
                 },
                 error: (error: HttpErrorResponse) => {
                     this.toastService.showErrorToast('Error', error.message);

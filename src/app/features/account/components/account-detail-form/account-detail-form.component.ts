@@ -29,6 +29,8 @@ export class AccountDetailFormComponent implements OnInit {
     form!: FormGroup;
     isLoading: boolean = false;
 
+
+
     constructor(
         private readonly formBuilder: FormBuilder,
         private readonly router: Router,
@@ -83,6 +85,8 @@ export class AccountDetailFormComponent implements OnInit {
             this.isLoading = false;
         }, 2000);
     }
+
+
 
     navigateAfterSucceed(): void {
         timer(2000)

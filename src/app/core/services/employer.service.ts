@@ -30,4 +30,13 @@ export class EmployerService {
       return this.http
         .patch(`${this.endpoint}/employer/${employerId}`, body);
     }
+
+  uploadLogo(companyId: string, image: FormData): Observable<unknown> {
+    const token = this.storageService.getAccessToken();
+    return this.http.post<unknown>(`${this.endpoint}/employer/upload/logo/${companyId}`, image, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 }
