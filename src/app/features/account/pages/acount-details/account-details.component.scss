@@ -7,5 +7,5 @@
 }
 
 .stepper {
-    @apply flex items-center justify-center font-medium text-gray-800 bg-gray-100 rounded-full size-7 shrink-0 group-focus:bg-gray-200 hs-stepper-active:bg-seance-700 hs-stepper-active:text-white hs-stepper-success:bg-seance-700 hs-stepper-success:text-white hs-stepper-completed:bg-scarlet hs-stepper-completed:group-focus:bg-scarlet-600;
+    @apply flex items-center justify-center font-medium text-scarlet-900 bg-violet-100 rounded-full size-7 shrink-0 group-focus:bg-gray-200 hs-stepper-active:bg-seance-700 hs-stepper-active:text-white hs-stepper-success:bg-seance-700 hs-stepper-success:text-white hs-stepper-completed:bg-scarlet hs-stepper-completed:group-focus:bg-scarlet-600;
 }

@@ -1,7 +1,17 @@
 :host {
-    display: block;
+  display: block;
+}
+
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight,
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight:hover {
+  @apply bg-scarlet;
+}
+
+:host ::ng-deep .p-radiobutton .p-radiobutton-box:not(.p-disabled) :not(.p-highlight):hover {
+  @apply border-scarlet;
+  border-color: yellow;
 }
 
 .text {
-    @apply text-sm text-scarlet-950;
+  @apply text-sm text-scarlet-950;
 }
