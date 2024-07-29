@@ -1,9 +1,9 @@
-@if (!isCompany) {
+@if (company) {
     <div class="profile-page">
         <section class="relative block h-[500px]">
             <div class="relative w-full h-[200px]">
                 <img
-                    src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80"
+                    [src]="company.header"
                     alt="Background Image"
                     class="absolute inset-0 object-cover w-full h-full rounded-lg" />
                 <span id="blackOverlay" class="absolute inset-0"></span>
@@ -26,9 +26,9 @@
                             <div class="flex justify-center w-full px-4 lg:w-3/12 lg:order-2">
                                 <div class="relative">
                                     <img
-                                        alt="..."
-                                        src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg"
-                                        class="absolute h-auto -m-16 -ml-20 align-middle border-none rounded-full shadow-xl lg:-ml-16 max-w-[150px]" />
+                                        alt="Company Logo"
+                                        [src]="company.logo"
+                                        class="absolute h-36 -m-16 -ml-20 align-middle border-none rounded-full shadow-xl lg:-ml-16 max-w-[150px]" />
                                 </div>
                             </div>
                             <div

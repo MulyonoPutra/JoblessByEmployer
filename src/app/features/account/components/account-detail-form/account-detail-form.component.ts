@@ -9,11 +9,14 @@ import {
 import { take, timer } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { CreateAccountDto } from '../../../../core/domain/dto/create-name.dto';
+import { EmployerService } from '../../../../core/services/employer.service';
 import { FormInputFieldComponent } from '../../../../shared/components/atoms/form-input-field/form-input-field.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { ToastService } from '../../../../shared/services/toast.service';
+import { UpdateAccountNameDto } from '../../../../core/domain/dto/update-account-name.dto';
 import { ValidationService } from '../../../../shared/services/validation.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'account-detail-form',
@@ -32,6 +35,7 @@ export class AccountDetailFormComponent implements OnInit {
         private readonly destroyRef: DestroyRef,
         private readonly validationService: ValidationService,
         private readonly toastService: ToastService,
+        private readonly employerService: EmployerService
     ) {}
 
     @Output() clicked = new EventEmitter();
@@ -42,7 +46,7 @@ export class AccountDetailFormComponent implements OnInit {
         });
     }
 
-    get formCtrlValue(): CreateAccountDto {
+    get formCtrlValue(): UpdateAccountNameDto {
         return {
             accountName: this.form.get('accountName')?.value,
         };
@@ -52,7 +56,27 @@ export class AccountDetailFormComponent implements OnInit {
         this.clicked.emit();
     }
 
-    saveChanges(): void {}
+    saveChanges(): void {
+      if(this.form.valid){
+        this.onCreate();
+      }
+    }
+
+    onCreate(): void {
+      this.employerService.updateAccountName(this.formCtrlValue)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: () => {
+            this.toastService.showSuccessToast('Success', 'Created Account!')
+          },
+          error: (error: HttpErrorResponse) => {
+            this.toastService.showErrorToast('Error', error.message);
+          },
+          complete: () => {
+            this.navigateAfterSucceed();
+          },
+        })
+    }
 
     private setLoading() {
         setTimeout(() => {
@@ -63,6 +87,7 @@ export class AccountDetailFormComponent implements OnInit {
     navigateAfterSucceed(): void {
         timer(2000)
             .pipe(take(1))
-            .subscribe(() => this.router.navigateByUrl('/'));
+          .subscribe(() => this.router.navigateByUrl('/account/details').then(() => window.location.reload())
+        );
     }
 }

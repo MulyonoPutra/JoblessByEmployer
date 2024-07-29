@@ -1,7 +1,12 @@
-<div class="mb-6">
-    <h3 class="font-bold text-scarlet">U.S. Flowbite</h3>
-    <address class="text-sm text-scarlet-900">
-        11350 McCormick Rd, EP III, Suite 200,<br />
-        Hunt Valley, MD 21031
-    </address>
-</div>
+
+@if (address) {
+  <div class="mb-6">
+      <h3 class="font-bold text-scarlet">U.S. Flowbite</h3>
+      <address class="text-sm text-scarlet-900">
+          11350 McCormick Rd, EP III, Suite 200,<br />
+          Hunt Valley, MD 21031
+      </address>
+  </div>
+} @else {
+  <app-empty-state></app-empty-state>
+}

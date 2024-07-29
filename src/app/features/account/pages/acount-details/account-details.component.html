@@ -74,7 +74,7 @@
                         @if (isAccount) {
                             <account-detail-form (clicked)="toggleUpdate('account')" />
                         } @else {
-                            <account-detail-content />
+                            <account-detail-content [employer]="employer" />
                         }
                     </app-card-content>
                 </div>

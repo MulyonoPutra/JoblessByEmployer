@@ -134,13 +134,13 @@ export class AccountDetailsComponent implements OnInit {
     toggleUpdate(type: 'account' | 'company' | 'address') {
         switch (type) {
             case 'account':
-                this.isAccount = !this.isAccount;
+            this.isAccount = !this.isAccount;
                 break;
             case 'company':
-                this.isCompany = !this.isCompany;
+            this.isCompany = !this.isCompany;
                 break;
             case 'address':
-                this.isAddress = !this.isAddress;
+            this.isAddress = !this.isAddress;
                 break;
         }
     }
