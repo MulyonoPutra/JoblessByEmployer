@@ -7,7 +7,8 @@
             aria-selected="true"
             data-hs-tab="#card-type-tab-preview"
             aria-controls="card-type-tab-preview"
-            role="tab">
+            role="tab"
+            (click)="sendStatus('open')">
             Open
         </button>
         <button
@@ -17,7 +18,8 @@
             aria-selected="false"
             data-hs-tab="#card-type-tab-2"
             aria-controls="card-type-tab-2"
-            role="tab">
+            role="tab"
+            (click)="sendStatus('expired')">
             Expired
         </button>
         <button
@@ -27,7 +29,8 @@
             aria-selected="false"
             data-hs-tab="#card-type-tab-3"
             aria-controls="card-type-tab-3"
-            role="tab">
+            role="tab"
+            (click)="sendStatus('draft')">
             Draft
         </button>
     </nav>
@@ -38,7 +41,7 @@
         <app-table
             [columns]="columns"
             [records]="data"
-            [filter]="['name']"
+            [filter]="filterFields"
             (created)="onCreate()"
             (edited)="onEdit()"
             (deleted)="onDelete()" />
@@ -47,7 +50,7 @@
         <app-table
             [columns]="columns"
             [records]="data"
-            [filter]="['name']"
+            [filter]="['title']"
             (created)="onCreate()"
             (edited)="onEdit()"
             (deleted)="onDelete()" />
@@ -56,7 +59,7 @@
         <app-table
             [columns]="columns"
             [records]="data"
-            [filter]="['name']"
+            [filter]="['title']"
             (created)="onCreate()"
             (edited)="onEdit()"
             (deleted)="onDelete()" />
