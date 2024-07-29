@@ -12,5 +12,7 @@ import { EmptyStateComponent } from '../../../../shared/components/atoms/empty-s
 })
 export class AddressDetailContentComponent implements OnInit {
     @Input() address!: Address;
+    @Input() companyName!: string;
+
     ngOnInit(): void {}
 }

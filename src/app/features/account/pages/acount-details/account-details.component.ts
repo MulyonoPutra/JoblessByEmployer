@@ -2,6 +2,7 @@ import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 
 import { AccountDetailContentComponent } from '../../components/acount-detail-content/account-detail-content.component';
 import { AccountDetailFormComponent } from '../../components/account-detail-form/account-detail-form.component';
+import { Address } from '../../../../core/domain/entities/address';
 import { AddressDetailContentComponent } from '../../components/address-detail-content/address-detail-content.component';
 import { AddressDetailFormComponent } from '../../components/address-detail-form/address-detail-form.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -53,10 +54,13 @@ export class AccountDetailsComponent implements OnInit {
 
     employer!: Employer;
     company!: Company;
+    address!: Address;
 
     isAccount!: boolean;
     isCompany!: boolean;
     isAddress!: boolean;
+
+    companyName!: string;
 
     // Dev purpose
     accountId = '50030354-581d-46f4-8bc6-b61dc11605a4';
@@ -89,7 +93,10 @@ export class AccountDetailsComponent implements OnInit {
                         null;
 
                     this.company = employer.company;
+                    this.address = employer.company.address!
                     this.companyId = employer.company.id!;
+
+                    this.companyName = employer.company.name;
                 },
                 error: (error: HttpErrorResponse) => {
                     this.toastService.showErrorToast('Error', error.message);

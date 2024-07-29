@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, EventEmitter, Output, type OnInit } from '@angular/core';
+import { Component, DestroyRef, EventEmitter, Input, Output, type OnInit } from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -14,6 +14,10 @@ import { Company } from '../../../../core/domain/entities/company';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { ValidationService } from '../../../../shared/services/validation.service';
 import { CreateAddressDto } from '../../../../core/domain/dto/create-address.dto';
+import { Employer } from '../../../../core/domain/entities/employer';
+import { EmployerService } from '../../../../core/services/employer.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-address-detail-form',
@@ -25,6 +29,7 @@ import { CreateAddressDto } from '../../../../core/domain/dto/create-address.dto
 export class AddressDetailFormComponent implements OnInit {
     form!: FormGroup;
     isLoading: boolean = false;
+    @Input() companyId!: string;
 
     constructor(
         private readonly formBuilder: FormBuilder,
@@ -32,6 +37,7 @@ export class AddressDetailFormComponent implements OnInit {
         private readonly destroyRef: DestroyRef,
         private readonly validationService: ValidationService,
         private readonly toastService: ToastService,
+        private readonly employerService: EmployerService
     ) {}
 
     @Output() clicked = new EventEmitter();
@@ -66,7 +72,27 @@ export class AddressDetailFormComponent implements OnInit {
         this.clicked.emit();
     }
 
-    saveChanges(): void {}
+    saveChanges(): void {
+      if(this.form.valid) {
+        this.onSubmit();
+      }
+    }
+
+    onSubmit(): void {
+      this.employerService.createAddress(this.companyId, this.formCtrlValue)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: () => {
+            this.toastService.showSuccessToast('Success', 'successfully Create Address!');
+          },
+          error: (error: HttpErrorResponse) => {
+            this.toastService.showErrorToast('Error', error.message);
+          },
+          complete: () => {
+            this.navigateAfterSucceed();
+          },
+        });
+    }
 
     private setLoading() {
         setTimeout(() => {
