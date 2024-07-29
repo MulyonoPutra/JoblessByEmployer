@@ -11,8 +11,7 @@ import { Employer } from '../../../../core/domain/entities/employer';
     styleUrls: ['./account-detail-content.component.scss'],
 })
 export class AccountDetailContentComponent implements OnInit {
-
-  @Input() employer!: Employer
+    @Input() employer!: Employer;
 
     ngOnInit(): void {}
 }

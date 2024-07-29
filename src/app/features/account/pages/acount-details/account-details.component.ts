@@ -58,7 +58,6 @@ export class AccountDetailsComponent implements OnInit {
     isCompany!: boolean;
     isAddress!: boolean;
 
-
     // Dev purpose
     accountId = '50030354-581d-46f4-8bc6-b61dc11605a4';
     addressId = '50030354-581d-46f4-8bc6-b61dc11605a4';
@@ -136,13 +135,13 @@ export class AccountDetailsComponent implements OnInit {
     toggleUpdate(type: 'account' | 'company' | 'address') {
         switch (type) {
             case 'account':
-            this.isAccount = !this.isAccount;
+                this.isAccount = !this.isAccount;
                 break;
             case 'company':
-            this.isCompany = !this.isCompany;
+                this.isCompany = !this.isCompany;
                 break;
             case 'address':
-            this.isAddress = !this.isAddress;
+                this.isAddress = !this.isAddress;
                 break;
         }
     }

@@ -36,9 +36,9 @@ export class CompanyDetailFormComponent implements OnInit {
     form!: FormGroup;
     isLoading: boolean = false;
 
-    @Input() companyId!: string
+    @Input() companyId!: string;
 
-  imgBase64!: string;
+    imgBase64!: string;
 
     constructor(
         private readonly formBuilder: FormBuilder,
@@ -46,7 +46,7 @@ export class CompanyDetailFormComponent implements OnInit {
         private readonly destroyRef: DestroyRef,
         private readonly validationService: ValidationService,
         private readonly toastService: ToastService,
-        private readonly employerService: EmployerService
+        private readonly employerService: EmployerService,
     ) {}
 
     @Output() clicked = new EventEmitter();
@@ -95,56 +95,60 @@ export class CompanyDetailFormComponent implements OnInit {
         }, 2000);
     }
 
-  triggerFileInput(): void {
-    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-    if (fileInput) {
-      fileInput.click();
+    triggerFileInput(): void {
+        const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+        if (fileInput) {
+            fileInput.click();
+        }
     }
-  }
 
-  onChangeFile(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
+    onChangeFile(event: Event): void {
+        const inputElement = event.target as HTMLInputElement;
 
-    if (inputElement.files && inputElement.files[0]) {
-      const file = inputElement.files[0];
+        if (inputElement.files && inputElement.files[0]) {
+            const file = inputElement.files[0];
 
-      if (!this.validationService.isValidImageType(file)) {
-        this.toastService.showErrorToast('Error', 'Only JPG, PNG, and WebP image formats are allowed.');
-        return;
-      }
+            if (!this.validationService.isValidImageType(file)) {
+                this.toastService.showErrorToast(
+                    'Error',
+                    'Only JPG, PNG, and WebP image formats are allowed.',
+                );
+                return;
+            }
 
-      if (!this.validationService.isValidFileSize(file)) {
-        this.toastService.showErrorToast('Error', 'Image size exceeds the limit of 5 MB.');
-        return;
-      }
+            if (!this.validationService.isValidFileSize(file)) {
+                this.toastService.showErrorToast('Error', 'Image size exceeds the limit of 5 MB.');
+                return;
+            }
 
-      this.imgBase64 = URL.createObjectURL(file);
-      this.uploadImageToServer(file);
+            this.imgBase64 = URL.createObjectURL(file);
+            this.uploadImageToServer(file);
+        }
     }
-  }
 
-  uploadImageToServer(file: File) {
-    const formData = new FormData();
-    formData.append('logo', file);
+    uploadImageToServer(file: File) {
+        const formData = new FormData();
+        formData.append('logo', file);
 
-    this.employerService.uploadLogo(this.companyId, formData).subscribe({
-      next: () => { },
-      error: (error: HttpErrorResponse) => {
-        console.log(error);
+        this.employerService.uploadLogo(this.companyId, formData).subscribe({
+            next: () => {},
+            error: (error: HttpErrorResponse) => {
+                console.log(error);
 
-        this.toastService.showErrorToast('Error', error.message);
-      },
-      complete: () => {
-        this.toastService.showSuccessToast('Success', 'successfully change logo!')
-        this.navigateAfterSucceed();
-      },
-    });
-  }
+                this.toastService.showErrorToast('Error', error.message);
+            },
+            complete: () => {
+                this.toastService.showSuccessToast('Success', 'successfully change logo!');
+                this.navigateAfterSucceed();
+            },
+        });
+    }
 
-  navigateAfterSucceed(): void {
-    timer(2000)
-      .pipe(take(1))
-      .subscribe(() => this.router.navigateByUrl('/account/details').then(() => window.location.reload())
-      );
-  }
+    navigateAfterSucceed(): void {
+        timer(2000)
+            .pipe(take(1))
+            .subscribe(() =>
+                this.router.navigateByUrl('/account/details').then(() => window.location.reload()),
+            );
+    }
 }

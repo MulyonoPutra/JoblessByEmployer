@@ -6,11 +6,11 @@ import { EmptyStateComponent } from '../../../../shared/components/atoms/empty-s
 @Component({
     selector: 'app-address-detail-content',
     standalone: true,
-  imports: [CommonModule, EmptyStateComponent],
+    imports: [CommonModule, EmptyStateComponent],
     templateUrl: './address-detail-content.component.html',
     styleUrls: ['./address-detail-content.component.scss'],
 })
 export class AddressDetailContentComponent implements OnInit {
-    @Input() address!: Address
+    @Input() address!: Address;
     ngOnInit(): void {}
 }

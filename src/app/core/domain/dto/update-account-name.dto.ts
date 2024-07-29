@@ -1,3 +1,3 @@
 export interface UpdateAccountNameDto {
-  accountName: string;
+    accountName: string;
 }

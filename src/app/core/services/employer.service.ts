@@ -14,10 +14,10 @@ import { environment } from '../../../environments/environment.development';
 export class EmployerService {
     endpoint = environment.endpoint;
 
-  constructor(
-    private readonly http: HttpClient,
-    private readonly storageService: StorageService,
-  ) { }
+    constructor(
+        private readonly http: HttpClient,
+        private readonly storageService: StorageService,
+    ) {}
 
     findEmployer(id: string): Observable<Employer> {
         return this.http
@@ -25,18 +25,21 @@ export class EmployerService {
             .pipe(map((response) => response.data));
     }
 
-  updateAccountName(body: UpdateAccountNameDto): Observable<unknown> {
-    const employerId = this.storageService.getEmployerIdentity();
-      return this.http
-        .patch(`${this.endpoint}/employer/${employerId}`, body);
+    updateAccountName(body: UpdateAccountNameDto): Observable<unknown> {
+        const employerId = this.storageService.getEmployerIdentity();
+        return this.http.patch(`${this.endpoint}/employer/${employerId}`, body);
     }
 
-  uploadLogo(companyId: string, image: FormData): Observable<unknown> {
-    const token = this.storageService.getAccessToken();
-    return this.http.post<unknown>(`${this.endpoint}/employer/upload/logo/${companyId}`, image, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
+    uploadLogo(companyId: string, image: FormData): Observable<unknown> {
+        const token = this.storageService.getAccessToken();
+        return this.http.post<unknown>(
+            `${this.endpoint}/employer/upload/logo/${companyId}`,
+            image,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            },
+        );
+    }
 }

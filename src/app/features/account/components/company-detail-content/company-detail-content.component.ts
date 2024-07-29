@@ -23,19 +23,17 @@ export class CompanyDetailContentComponent implements OnInit {
     @Input() company!: Company;
     @Output() clicked = new EventEmitter();
 
-  constructor(
-    private readonly router: Router,
-    private readonly destroyRef: DestroyRef,
-    private readonly validationService: ValidationService,
-    private readonly toastService: ToastService,
-    private readonly employerService: EmployerService
-  ) { }
+    constructor(
+        private readonly router: Router,
+        private readonly destroyRef: DestroyRef,
+        private readonly validationService: ValidationService,
+        private readonly toastService: ToastService,
+        private readonly employerService: EmployerService,
+    ) {}
 
     ngOnInit(): void {}
 
     onClicked(): void {
         this.clicked.emit();
     }
-
-
 }

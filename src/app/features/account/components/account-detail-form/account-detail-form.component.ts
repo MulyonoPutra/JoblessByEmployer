@@ -29,15 +29,13 @@ export class AccountDetailFormComponent implements OnInit {
     form!: FormGroup;
     isLoading: boolean = false;
 
-
-
     constructor(
         private readonly formBuilder: FormBuilder,
         private readonly router: Router,
         private readonly destroyRef: DestroyRef,
         private readonly validationService: ValidationService,
         private readonly toastService: ToastService,
-        private readonly employerService: EmployerService
+        private readonly employerService: EmployerService,
     ) {}
 
     @Output() clicked = new EventEmitter();
@@ -59,25 +57,26 @@ export class AccountDetailFormComponent implements OnInit {
     }
 
     saveChanges(): void {
-      if(this.form.valid){
-        this.onCreate();
-      }
+        if (this.form.valid) {
+            this.onCreate();
+        }
     }
 
     onCreate(): void {
-      this.employerService.updateAccountName(this.formCtrlValue)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-          next: () => {
-            this.toastService.showSuccessToast('Success', 'Created Account!')
-          },
-          error: (error: HttpErrorResponse) => {
-            this.toastService.showErrorToast('Error', error.message);
-          },
-          complete: () => {
-            this.navigateAfterSucceed();
-          },
-        })
+        this.employerService
+            .updateAccountName(this.formCtrlValue)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: () => {
+                    this.toastService.showSuccessToast('Success', 'Created Account!');
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.toastService.showErrorToast('Error', error.message);
+                },
+                complete: () => {
+                    this.navigateAfterSucceed();
+                },
+            });
     }
 
     private setLoading() {
@@ -86,12 +85,11 @@ export class AccountDetailFormComponent implements OnInit {
         }, 2000);
     }
 
-
-
     navigateAfterSucceed(): void {
         timer(2000)
             .pipe(take(1))
-          .subscribe(() => this.router.navigateByUrl('/account/details').then(() => window.location.reload())
-        );
+            .subscribe(() =>
+                this.router.navigateByUrl('/account/details').then(() => window.location.reload()),
+            );
     }
 }

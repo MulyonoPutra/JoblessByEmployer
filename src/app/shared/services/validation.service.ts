@@ -164,12 +164,12 @@ export class ValidationService {
         return '';
     }
 
-  isValidImageType(file: File): boolean {
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-    return allowedTypes.includes(file.type);
-  }
+    isValidImageType(file: File): boolean {
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        return allowedTypes.includes(file.type);
+    }
 
-  isValidFileSize(file: File): boolean {
-    return file.size <= 5 * 1024 * 1024;
-  }
+    isValidFileSize(file: File): boolean {
+        return file.size <= 5 * 1024 * 1024;
+    }
 }
