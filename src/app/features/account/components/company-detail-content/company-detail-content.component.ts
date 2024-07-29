@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, type OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, type OnInit } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { SkeletonLoaderComponent } from '../../../../shared/components/atoms/skeleton-loader/skeleton-loader.component';
+import { Company } from '../../../../core/domain/entities/company';
 
 @Component({
     selector: 'app-company-detail-content',
@@ -12,6 +13,7 @@ import { SkeletonLoaderComponent } from '../../../../shared/components/atoms/ske
 })
 export class CompanyDetailContentComponent implements OnInit {
     isCompany = false;
+    @Input() company!: Company;
     @Output() clicked = new EventEmitter();
 
     ngOnInit(): void {}

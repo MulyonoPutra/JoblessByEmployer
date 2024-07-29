@@ -45,7 +45,7 @@ export class AuthenticationService {
 
     register(body: RegisterDto): Observable<HttpResponseEntity<Credentials>> {
         return this.http.post<HttpResponseEntity<Credentials>>(
-            `${this.endpoint}/auth/register`,
+            `${this.endpoint}/auth/register/employer`,
             body,
         );
     }

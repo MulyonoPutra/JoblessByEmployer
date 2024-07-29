@@ -7,8 +7,10 @@
                     svgClass="flex-shrink-0 size-3.5" />
                 English (US)
             </a>
-            <a class="underline-btn" routerLink="auth/login">Sign In</a>
-            <a class="btn-violet" routerLink="/jobs/create">Create Job Ads</a>
+            @if (!employerId) {
+              <a class="underline-btn" routerLink="auth/login">Sign In</a>
+            }
+            <button class="btn-violet" (click)="navigate()">Create Job Ads</button>
         </div>
     </div>
     <nav aria-label="Global">
@@ -46,40 +48,42 @@
                     >Jobs</a
                 >
 
-                <div
-                    class="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] py-3 ps-px sm:ps-3 sm:py-6">
-                    <a
-                        class="flex items-center w-full font-medium text-scarlet hover:text-seance-500">
-                        Mulyono
-                        <svg-icon
-                            src="../../../../../assets/icons/arrow-down.svg"
-                            svgClass="flex-shrink-0 ms-2 size-4"></svg-icon>
-                    </a>
+                @if (user) {
+                  <div
+                      class="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] py-3 ps-px sm:ps-3 sm:py-6">
+                      <a
+                          class="flex items-center w-full font-medium text-scarlet hover:text-seance-500">
+                          {{ user.name }}
+                          <svg-icon
+                              src="../../../../../assets/icons/arrow-down.svg"
+                              svgClass="flex-shrink-0 ms-2 size-4"></svg-icon>
+                      </a>
 
-                    <div
-                        class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 sm: before:absolute top-full sm:border before:-top-5 before:start-0 before:w-full before:h-5">
-                        <a
-                            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
-                            [routerLink]="'/account/details'"
-                            [routerLinkActive]="'router-link-active'"
-                            [routerLinkActiveOptions]="{ exact: true }">
-                            Account Details
-                        </a>
+                      <div
+                          class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 sm: before:absolute top-full sm:border before:-top-5 before:start-0 before:w-full before:h-5">
+                          <a
+                              class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
+                              [routerLink]="'/account/details'"
+                              [routerLinkActive]="'router-link-active'"
+                              [routerLinkActiveOptions]="{ exact: true }">
+                              Account Details
+                          </a>
 
-                        <a
-                            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
-                            [routerLink]="'/contact'"
-                            [routerLinkActive]="'router-link-active'"
-                            [routerLinkActiveOptions]="{ exact: true }">
-                            Contact Us
-                        </a>
-                        <a
-                            class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
-                            routerLink="">
-                            Logout
-                        </a>
-                    </div>
-                </div>
+                          <a
+                              class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
+                              [routerLink]="'/contact'"
+                              [routerLinkActive]="'router-link-active'"
+                              [routerLinkActiveOptions]="{ exact: true }">
+                              Contact Us
+                          </a>
+                          <a
+                              class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-scarlet hover:bg-seance-100 focus:ring-2 focus:ring-violet-500"
+                              routerLink="">
+                              Logout
+                          </a>
+                      </div>
+                  </div>
+                }
             </div>
         </div>
     </nav>

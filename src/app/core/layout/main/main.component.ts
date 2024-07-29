@@ -17,7 +17,7 @@ import { User } from '../../domain/entities/user';
     imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent],
     template: `
         <div class="flex flex-col h-screen justify-between">
-            <app-navbar></app-navbar>
+            <app-navbar [user]="user" />
             <main>
                 <div
                     [ngClass]="{
@@ -49,7 +49,9 @@ export class MainComponent implements OnInit {
         this.trackRouteChanges();
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+      this.findUser();
+    }
 
     trackRouteChanges(): void {
         this.router.events.subscribe((event: Event) => {

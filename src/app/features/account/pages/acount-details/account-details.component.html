@@ -79,7 +79,7 @@
                     @if (isCompany) {
                         <app-company-detail-form (clicked)="toggleUpdate('company')" />
                     } @else {
-                        <app-company-detail-content (clicked)="toggleUpdate('company')" />
+                        <app-company-detail-content [company]="company" (clicked)="toggleUpdate('company')" />
                     }
                 </div>
 
@@ -89,9 +89,9 @@
                         [title]="'Address Detail'"
                         [subtitle]="'Manage your address  information'">
                         @if (isAddress) {
-                            <app-address-detail-content />
+                          <app-address-detail-form />
                         } @else {
-                            <app-address-detail-form />
+                          <app-address-detail-content />
                         }
                     </app-card-content>
                 </div>
