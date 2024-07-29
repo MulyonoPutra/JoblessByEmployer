@@ -42,4 +42,17 @@ export class EmployerService {
             },
         );
     }
+
+    uploadHeader(companyId: string, image: FormData): Observable<unknown> {
+        const token = this.storageService.getAccessToken();
+        return this.http.post<unknown>(
+            `${this.endpoint}/employer/upload/header/${companyId}`,
+            image,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            },
+        );
+    }
 }

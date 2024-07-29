@@ -17,6 +17,7 @@ import { ValidationService } from '../../../../shared/services/validation.servic
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { EmployerService } from '../../../../core/services/employer.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-company-detail-form',
@@ -88,24 +89,22 @@ export class CompanyDetailFormComponent implements OnInit {
 
     saveChanges(): void {
       if(this.form.valid) {
-        
+
       }
     }
 
-    private setLoading() {
-        setTimeout(() => {
-            this.isLoading = false;
-        }, 2000);
-    }
-
     triggerFileInput(): void {
-        const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-        if (fileInput) {
-            fileInput.click();
-        }
+        const logo = document.getElementById('logo') as HTMLInputElement;
+        const header = document.getElementById('header') as HTMLInputElement;
+
+      if (logo) {
+          logo.click();
+      } else {
+          header.click();
+      }
     }
 
-    onChangeFile(event: Event): void {
+    onChangeFile(event: Event, type: string): void {
         const inputElement = event.target as HTMLInputElement;
 
         if (inputElement.files && inputElement.files[0]) {
@@ -125,21 +124,48 @@ export class CompanyDetailFormComponent implements OnInit {
             }
 
             this.imgBase64 = URL.createObjectURL(file);
-            this.uploadImageToServer(file);
+
+            if(type === 'logo') {
+              this.uploadLogoToServer(file);
+            } else if(type === 'header') {
+              this.uploadHeaderToServer(file);
+            }
         }
     }
 
-    uploadImageToServer(file: File) {
+    uploadHeaderToServer(file: File) {
+      const formData = new FormData();
+      formData.append('header', file);
+
+      this.employerService.uploadHeader(this.companyId, formData)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: () => {
+            this.toastService.showSuccessToast('Success', 'successfully change header!');
+          },
+          error: (error: HttpErrorResponse) => {
+            this.toastService.showErrorToast('Error', error.message);
+          },
+          complete: () => {
+            this.navigateAfterSucceed();
+          },
+        });
+    }
+
+    uploadLogoToServer(file: File) {
         const formData = new FormData();
         formData.append('logo', file);
 
-        this.employerService.uploadLogo(this.companyId, formData).subscribe({
-            next: () => {},
+        this.employerService.uploadLogo(this.companyId, formData)
+          .pipe(takeUntilDestroyed(this.destroyRef))
+          .subscribe({
+            next: () => {
+              this.toastService.showSuccessToast('Success', 'successfully change logo!');
+            },
             error: (error: HttpErrorResponse) => {
                 this.toastService.showErrorToast('Error', error.message);
             },
             complete: () => {
-                this.toastService.showSuccessToast('Success', 'successfully change logo!');
                 this.navigateAfterSucceed();
             },
         });
