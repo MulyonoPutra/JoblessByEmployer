@@ -39,6 +39,7 @@ export class CompanyDetailFormComponent implements OnInit {
     @Input() companyId!: string;
 
     imgBase64!: string;
+    emptyLogo = 'https://preline.co/assets/img/160x160/img1.jpg';
 
     constructor(
         private readonly formBuilder: FormBuilder,
@@ -58,7 +59,6 @@ export class CompanyDetailFormComponent implements OnInit {
     initForm() {
         this.form = this.formBuilder.group({
             name: ['', Validators.required],
-            logo: ['', Validators.required],
             website: ['', Validators.required],
             industry: ['', Validators.required],
             size: ['', Validators.required],
@@ -72,7 +72,6 @@ export class CompanyDetailFormComponent implements OnInit {
     get formCtrlValue(): Company {
         return {
             name: this.form.get('name')?.value,
-            logo: this.form.get('logo')?.value,
             website: this.form.get('website')?.value,
             industry: this.form.get('industry')?.value,
             size: this.form.get('size')?.value,
@@ -87,7 +86,11 @@ export class CompanyDetailFormComponent implements OnInit {
         this.clicked.emit();
     }
 
-    saveChanges(): void {}
+    saveChanges(): void {
+      if(this.form.valid) {
+        
+      }
+    }
 
     private setLoading() {
         setTimeout(() => {
@@ -133,8 +136,6 @@ export class CompanyDetailFormComponent implements OnInit {
         this.employerService.uploadLogo(this.companyId, formData).subscribe({
             next: () => {},
             error: (error: HttpErrorResponse) => {
-                console.log(error);
-
                 this.toastService.showErrorToast('Error', error.message);
             },
             complete: () => {
