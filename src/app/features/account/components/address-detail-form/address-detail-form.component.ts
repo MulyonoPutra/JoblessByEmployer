@@ -18,6 +18,7 @@ import { Employer } from '../../../../core/domain/entities/employer';
 import { EmployerService } from '../../../../core/services/employer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Address } from '../../../../core/domain/entities/address';
 
 @Component({
     selector: 'app-address-detail-form',
@@ -30,12 +31,12 @@ export class AddressDetailFormComponent implements OnInit {
     form!: FormGroup;
     isLoading: boolean = false;
     @Input() companyId!: string;
+    @Input() address!: Address;
 
     constructor(
         private readonly formBuilder: FormBuilder,
         private readonly router: Router,
         private readonly destroyRef: DestroyRef,
-        private readonly validationService: ValidationService,
         private readonly toastService: ToastService,
         private readonly employerService: EmployerService
     ) {}
@@ -44,6 +45,9 @@ export class AddressDetailFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.initForm();
+        if(this.address) {
+          this.prepopulateForms(this.address);
+        }
     }
 
     initForm() {
@@ -67,6 +71,17 @@ export class AddressDetailFormComponent implements OnInit {
             postCode: this.form.get('postCode')?.value,
         };
     }
+
+  protected prepopulateForms(data: CreateAddressDto): void {
+    this.form.patchValue({
+      street: data.street,
+      province: data.province,
+      regency: data.regency,
+      district: data.district,
+      village: data.village,
+      postCode: data.postCode,
+    });
+  }
 
     onClicked(): void {
         this.clicked.emit();
@@ -92,12 +107,6 @@ export class AddressDetailFormComponent implements OnInit {
             this.navigateAfterSucceed();
           },
         });
-    }
-
-    private setLoading() {
-        setTimeout(() => {
-            this.isLoading = false;
-        }, 2000);
     }
 
     navigateAfterSucceed(): void {

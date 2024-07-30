@@ -98,7 +98,7 @@
                         [title]="'Address Detail'"
                         [subtitle]="'Manage your address  information'">
                         @if (isAddress) {
-                            <app-address-detail-form [companyId]="companyId" />
+                            <app-address-detail-form [address]="address" [companyId]="companyId" />
                         } @else {
                             <app-address-detail-content [address]="address" [companyName]="companyName" />
                         }
