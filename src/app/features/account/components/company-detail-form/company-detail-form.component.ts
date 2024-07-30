@@ -19,6 +19,7 @@ import { EmployerService } from '../../../../core/services/employer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Employer } from '../../../../core/domain/entities/employer';
+import { CreateAddressDto } from '../../../../core/domain/dto/create-address.dto';
 
 @Component({
     selector: 'app-company-detail-form',
@@ -77,7 +78,7 @@ export class CompanyDetailFormComponent implements OnInit {
         });
     }
 
-    get formCtrlValue(): Company {
+  get formCtrlValue(): Company {
         return {
             name: this.form.get('name')?.value,
             website: this.form.get('website')?.value,
@@ -111,7 +112,24 @@ export class CompanyDetailFormComponent implements OnInit {
 
     saveChanges(): void {
         if (this.form.valid) {
+          this.onSave();
         }
+    }
+
+    onSave(): void {
+      this.employerService.createCompany(this.companyId, this.formCtrlValue)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: () => {
+            this.toastService.showSuccessToast('Success', 'successfully change header!');
+          },
+          error: (error: HttpErrorResponse) => {
+            this.toastService.showErrorToast('Error', error.message);
+          },
+          complete: () => {
+            this.navigateAfterSucceed();
+          },
+        });
     }
 
     triggerFileInput(): void {

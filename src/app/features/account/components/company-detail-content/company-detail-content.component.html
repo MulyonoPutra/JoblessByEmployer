@@ -67,8 +67,7 @@
                                     <a
                                         href="mailto:hr@flowbite.com"
                                         class="text-sm text-scarlet-900"
-                                        >{{ company.size }}</a
-                                    >
+                                        >{{ company.size }}</a>
                                 </div>
                                 <div class="mb-6">
                                     <h3 class="font-bold text-scarlet">Location</h3>
@@ -102,5 +101,11 @@
         </section>
     </div>
 } @else {
-    <app-skeleton-loader [isCompany]="true"></app-skeleton-loader>
+    <app-card-content
+        (clicked)="onClicked()"
+        [title]="'Company Detail'"
+        [subtitle]="'Manage your Company information'">
+    <app-empty-state></app-empty-state>
+  </app-card-content>
+    <!-- <app-skeleton-loader [isCompany]="true"></app-skeleton-loader> -->
 }

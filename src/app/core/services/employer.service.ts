@@ -1,6 +1,8 @@
 import { Observable, map } from 'rxjs';
 
 import { Address } from '../domain/entities/address';
+import { Company } from '../domain/entities/company';
+import { CompanyDto } from '../domain/dto/create-company.dto';
 import { CreateAddressDto } from '../domain/dto/create-address.dto';
 import { Employer } from '../domain/entities/employer';
 import { HttpClient } from '@angular/common/http';
@@ -65,4 +67,12 @@ export class EmployerService {
             >(`${this.endpoint}/employer/address/${companyId}`, body)
             .pipe(map((response) => response.data));
     }
+
+  createCompany(employerId: string, body: CompanyDto): Observable<Company> {
+    return this.http
+      .post<
+        HttpResponseEntity<Company>
+      >(`${this.endpoint}/employer/company/${employerId}`, body)
+      .pipe(map((response) => response.data));
+  }
 }
