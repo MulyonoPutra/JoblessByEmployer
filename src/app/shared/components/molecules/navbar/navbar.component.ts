@@ -19,7 +19,6 @@ export class NavbarComponent {
     private readonly router: Router = inject(Router);
 
     @Input() user!: User;
-
     @Output() logout = new EventEmitter();
 
     signOut(): void {
