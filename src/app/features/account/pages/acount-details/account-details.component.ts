@@ -88,11 +88,6 @@ export class AccountDetailsComponent implements OnInit {
             .subscribe({
                 next: (employer: Employer) => {
                     this.employer = employer;
-                    console.log(this.employer);
-                    this.accountNameDto = {
-                      accountName: employer.accountName
-                    }
-
                     this.isAccount = this.employer.accountName === null;
                     this.isCompany = (this.employer.company && this.employer.company.id) === null;
                     this.isAddress =

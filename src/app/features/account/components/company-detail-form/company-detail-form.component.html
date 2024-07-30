@@ -3,7 +3,7 @@
         <div class="bg-white shadow rounded-xl">
             <div class="relative h-40 overflow-hidden rounded-t-xl">
                 <img
-                    src="https://preline.co/assets/svg/examples/abstract-bg-1.svg"
+                    [src]="imgHeader ? imgHeader : emptyHeader"
                     loading="lazy"
                     class="absolute inset-0 object-cover w-full h-full"
                     alt="Background Image" />

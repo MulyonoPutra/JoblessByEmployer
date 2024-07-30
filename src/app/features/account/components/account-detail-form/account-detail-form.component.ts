@@ -26,10 +26,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrls: ['./account-detail-form.component.scss'],
 })
 export class AccountDetailFormComponent implements OnInit {
+  @Input() employer!: Employer;
+  @Output() clicked = new EventEmitter();
+
   form!: FormGroup;
   isLoading: boolean = false;
-
-  @Input() employer!: Employer;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -37,11 +38,7 @@ export class AccountDetailFormComponent implements OnInit {
     private readonly destroyRef: DestroyRef,
     private readonly toastService: ToastService,
     private readonly employerService: EmployerService,
-  ) {
-
-  }
-
-  @Output() clicked = new EventEmitter();
+  ) {}
 
   ngOnInit(): void {
     this.formInit();

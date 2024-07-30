@@ -83,6 +83,7 @@
                     @if (isCompany) {
                         <app-company-detail-form
                             [companyId]="companyId"
+                            [company]="company"
                             (clicked)="toggleUpdate('company')" />
                     } @else {
                         <app-company-detail-content

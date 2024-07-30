@@ -18,6 +18,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { EmployerService } from '../../../../core/services/employer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Employer } from '../../../../core/domain/entities/employer';
 
 @Component({
     selector: 'app-company-detail-form',
@@ -38,9 +39,12 @@ export class CompanyDetailFormComponent implements OnInit {
     isLoading: boolean = false;
 
     @Input() companyId!: string;
+    @Input() company!: Company;
 
     imgBase64!: string;
+    imgHeader!: string;
     emptyLogo = 'https://preline.co/assets/img/160x160/img1.jpg';
+    emptyHeader = 'https://preline.co/assets/svg/examples/abstract-bg-1.svg';
 
     constructor(
         private readonly formBuilder: FormBuilder,
@@ -55,6 +59,9 @@ export class CompanyDetailFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.initForm();
+        if(this.company) {
+          this.prepopulateForms(this.company)
+        }
     }
 
     initForm() {
@@ -82,6 +89,22 @@ export class CompanyDetailFormComponent implements OnInit {
             contactInfo: this.form.get('contactInfo')?.value,
         };
     }
+
+  protected prepopulateForms(data: any): void {
+        this.form.patchValue({
+          name: data.name,
+          website: data.website,
+          industry: data.industry,
+          size: data.size,
+          location: data.location,
+          description: data.description,
+          benefit: data.benefit,
+          contactInfo: data.contactInfo,
+        });
+        this.imgBase64 = data.logo;
+        this.imgHeader = data.header;
+
+  }
 
     onClicked(): void {
         this.clicked.emit();
