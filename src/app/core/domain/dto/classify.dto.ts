@@ -1,6 +1,7 @@
 export interface ClassifyDto {
     title: string;
-    salary: number;
+    salary: string;
     workType: string;
     payType: string;
+    location: string;
 }

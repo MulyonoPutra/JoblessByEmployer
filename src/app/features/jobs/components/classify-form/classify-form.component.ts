@@ -61,27 +61,23 @@ export class ClassifyFormComponent implements OnInit {
     formInit(): void {
         this.form = this.formBuilder.group({
             title: ['', Validators.required],
-            salary: [null, Validators.required],
+            salary: ['', Validators.required],
+            location: ['', Validators.required],
             workType: ['', Validators.required],
             payType: ['', Validators.required],
         });
     }
 
-    get formCtrlValue(): ClassifyDto {
-        return {
-            title: this.form.get('title')?.value,
-            salary: this.form.get('salary')?.value,
-            workType: this.form.get('workType')?.value,
-            payType: this.form.get('payType')?.value,
-        };
-    }
-
     detectValueChanges(): void {
         this.form?.valueChanges.pipe(debounceTime(2000)).subscribe({
             next: (value) => {
-                if (value) {
-                    this.classify.emit(value);
-                }
+            if (value) {
+              const updatedValue = {
+                ...value,
+                salary: value.salary?.toString() || '',
+              };
+              this.classify.emit(updatedValue);
+            }
             },
         });
     }

@@ -2,7 +2,7 @@ export interface CreateJobAdsDto {
     title?: string;
     description?: string;
     requirements?: string;
-    salary?: number;
+    salary?: string;
     workType?: string;
     payType?: string;
     location?: string;
