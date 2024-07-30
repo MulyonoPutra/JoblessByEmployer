@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -19,6 +19,12 @@ export class NavbarComponent {
     private readonly router: Router = inject(Router);
 
     @Input() user!: User;
+
+    @Output() logout = new EventEmitter();
+
+    signOut(): void {
+      this.logout.emit();
+    }
 
     get employerId(): string {
         return this.storageService.getEmployerIdentity();

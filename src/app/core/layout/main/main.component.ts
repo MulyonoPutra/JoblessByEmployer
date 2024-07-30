@@ -17,7 +17,7 @@ import { User } from '../../domain/entities/user';
     imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent],
     template: `
         <div class="flex flex-col h-screen justify-between">
-            <app-navbar [user]="user" />
+            <app-navbar [user]="user" (logout)="logout()" />
             <main>
                 <div
                     [ngClass]="{
@@ -86,5 +86,20 @@ export class MainComponent implements OnInit {
                 },
                 complete: () => {},
             });
+    }
+
+    logout(): void {
+      const token = this.storageService.getAccessToken();
+      this.authService.logout(token).subscribe({
+        next: () => {
+          this.toastService.showSuccessToast('Success', 'Logout Successfully!');
+        },
+        error: (error: HttpErrorResponse) => {
+          this.toastService.showErrorToast('Error', error.message);
+        },
+        complete: () => {
+          this.router.navigateByUrl('/auth/login').then(() => window.location.reload());
+        },
+      });
     }
 }
