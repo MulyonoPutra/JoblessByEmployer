@@ -2,9 +2,7 @@
     <ul class="relative flex flex-row gap-x-2">
         <li
             class="flex items-center flex-1 gap-x-2 shrink basis-0 group"
-            data-hs-stepper-nav-item='{
-      "index": 1
-    }'>
+            data-hs-stepper-nav-item='{ "index": 1 }'>
             <span class="inline-flex items-center text-xs align-middle min-w-7 min-h-7 group">
                 <span class="stepper">
                     <span class="hs-stepper-success:hidden hs-stepper-completed:hidden">1</span>
@@ -14,8 +12,7 @@
                 </span>
                 <span class="text-sm font-medium text-gray-800 ms-2"> Classify </span>
             </span>
-            <div
-                class="flex-1 w-full h-px bg-gray-200 group-last:hidden hs-stepper-success:bg-seance-600 hs-stepper-completed:bg-scarlet-600"></div>
+            <div class="flex-1 w-full h-px bg-gray-200 group-last:hidden hs-stepper-success:bg-seance-600 hs-stepper-completed:bg-scarlet-600"></div>
         </li>
 
         <li
@@ -36,9 +33,7 @@
 
         <li
             class="flex items-center flex-1 gap-x-2 shrink basis-0 group"
-            data-hs-stepper-nav-item='{
-        "index": 3
-      }'>
+            data-hs-stepper-nav-item='{ "index": 3 }'>
             <span class="inline-flex items-center text-xs align-middle min-w-7 min-h-7 group">
                 <span class="stepper">
                     <span class="hs-stepper-success:hidden hs-stepper-completed:hidden">3</span>
@@ -55,9 +50,7 @@
 
     <div class="mt-5 sm:mt-8">
         <div
-            data-hs-stepper-content-item='{
-      "index": 1
-    }'>
+            data-hs-stepper-content-item='{ "index": 1 }'>
             <div class="mb-8 text-start">
                 <h2 class="text-2xl font-bold text-scarlet md:text-3xl">Classify your role</h2>
                 <p class="text-sm text-scarlet-900">Input job classification details</p>
@@ -106,6 +99,7 @@
         <div class="flex items-center justify-between mt-5 gap-x-2">
             <button type="button" class="btn-negative" data-hs-stepper-back-btn="">Back</button>
             <button type="button" class="btn-positive" data-hs-stepper-next-btn="">Next</button>
+
             <button
                 (click)="onSubmit()"
                 type="button"
