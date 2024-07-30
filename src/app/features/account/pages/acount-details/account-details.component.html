@@ -72,7 +72,7 @@
                         [title]="'Personal Detail'"
                         [subtitle]="'Manage your personal information'">
                         @if (isAccount) {
-                            <account-detail-form (clicked)="toggleUpdate('account')" />
+                            <account-detail-form [employer]="employer" (clicked)="toggleUpdate('account')" />
                         } @else {
                             <account-detail-content [employer]="employer" />
                         }

@@ -3,8 +3,8 @@ import { User } from './user';
 
 export interface Employer {
     id: string;
-    accountName: any;
-    accountNumber: any;
+    accountName: string;
+    accountNumber: string;
     company: Company;
     jobAds: any[];
     user: User;

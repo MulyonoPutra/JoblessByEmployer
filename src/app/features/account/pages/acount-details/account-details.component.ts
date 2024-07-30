@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 import { StorageService } from '../../../../shared/services/storage.service';
 import { TabNavsComponent } from '../../../../shared/components/molecules/tab-navs/tab-navs.component';
 import { ToastService } from '../../../../shared/services/toast.service';
+import { UpdateAccountNameDto } from '../../../../core/domain/dto/update-account-name.dto';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 interface CompleteMessage {
@@ -55,6 +56,7 @@ export class AccountDetailsComponent implements OnInit {
     employer!: Employer;
     company!: Company;
     address!: Address;
+    accountNameDto!: UpdateAccountNameDto;
 
     isAccount!: boolean;
     isCompany!: boolean;
@@ -86,6 +88,11 @@ export class AccountDetailsComponent implements OnInit {
             .subscribe({
                 next: (employer: Employer) => {
                     this.employer = employer;
+                    console.log(this.employer);
+                    this.accountNameDto = {
+                      accountName: employer.accountName
+                    }
+
                     this.isAccount = this.employer.accountName === null;
                     this.isCompany = (this.employer.company && this.employer.company.id) === null;
                     this.isAddress =
