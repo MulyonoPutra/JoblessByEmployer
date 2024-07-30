@@ -71,13 +71,13 @@ export class ClassifyFormComponent implements OnInit {
     detectValueChanges(): void {
         this.form?.valueChanges.pipe(debounceTime(2000)).subscribe({
             next: (value) => {
-            if (value) {
-              const updatedValue = {
-                ...value,
-                salary: value.salary?.toString() || '',
-              };
-              this.classify.emit(updatedValue);
-            }
+                if (value) {
+                    const updatedValue = {
+                        ...value,
+                        salary: value.salary?.toString() || '',
+                    };
+                    this.classify.emit(updatedValue);
+                }
             },
         });
     }

@@ -59,8 +59,10 @@ export class EmployerService {
     }
 
     createAddress(companyId: string, body: CreateAddressDto): Observable<Address> {
-      return this.http.post<HttpResponseEntity<Address>>
-      (`${this.endpoint}/employer/address/${companyId}`,body)
-      .pipe(map(response => response.data));
+        return this.http
+            .post<
+                HttpResponseEntity<Address>
+            >(`${this.endpoint}/employer/address/${companyId}`, body)
+            .pipe(map((response) => response.data));
     }
 }

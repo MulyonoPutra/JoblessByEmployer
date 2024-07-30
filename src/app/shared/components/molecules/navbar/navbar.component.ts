@@ -22,7 +22,7 @@ export class NavbarComponent {
     @Output() logout = new EventEmitter();
 
     signOut(): void {
-      this.logout.emit();
+        this.logout.emit();
     }
 
     get employerId(): string {

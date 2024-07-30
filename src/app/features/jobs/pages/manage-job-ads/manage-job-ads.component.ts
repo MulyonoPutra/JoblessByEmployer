@@ -82,7 +82,7 @@ export class ManageJobAdsComponent implements OnInit {
     onEdit() {
         console.log('onEdit');
     }
-    
+
     onDelete() {
         console.log('onDeleted');
     }

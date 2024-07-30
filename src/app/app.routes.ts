@@ -37,5 +37,5 @@ export const routes: Routes = [
         loadChildren: () =>
             import('./features/authentication/authentication.routes').then((c) => c.AUTH_ROUTES),
     },
-  { path: '**', component: PageNotFoundComponent },
+    { path: '**', component: PageNotFoundComponent },
 ];

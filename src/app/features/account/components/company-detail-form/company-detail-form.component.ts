@@ -59,8 +59,8 @@ export class CompanyDetailFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.initForm();
-        if(this.company) {
-          this.prepopulateForms(this.company)
+        if (this.company) {
+            this.prepopulateForms(this.company);
         }
     }
 
@@ -90,41 +90,39 @@ export class CompanyDetailFormComponent implements OnInit {
         };
     }
 
-  protected prepopulateForms(data: any): void {
+    protected prepopulateForms(data: any): void {
         this.form.patchValue({
-          name: data.name,
-          website: data.website,
-          industry: data.industry,
-          size: data.size,
-          location: data.location,
-          description: data.description,
-          benefit: data.benefit,
-          contactInfo: data.contactInfo,
+            name: data.name,
+            website: data.website,
+            industry: data.industry,
+            size: data.size,
+            location: data.location,
+            description: data.description,
+            benefit: data.benefit,
+            contactInfo: data.contactInfo,
         });
         this.imgBase64 = data.logo;
         this.imgHeader = data.header;
-
-  }
+    }
 
     onClicked(): void {
         this.clicked.emit();
     }
 
     saveChanges(): void {
-      if(this.form.valid) {
-
-      }
+        if (this.form.valid) {
+        }
     }
 
     triggerFileInput(): void {
         const logo = document.getElementById('logo') as HTMLInputElement;
         const header = document.getElementById('header') as HTMLInputElement;
 
-      if (logo) {
-          logo.click();
-      } else {
-          header.click();
-      }
+        if (logo) {
+            logo.click();
+        } else {
+            header.click();
+        }
     }
 
     onChangeFile(event: Event, type: string): void {
@@ -148,50 +146,52 @@ export class CompanyDetailFormComponent implements OnInit {
 
             this.imgBase64 = URL.createObjectURL(file);
 
-            if(type === 'logo') {
-              this.uploadLogoToServer(file);
-            } else if(type === 'header') {
-              this.uploadHeaderToServer(file);
+            if (type === 'logo') {
+                this.uploadLogoToServer(file);
+            } else if (type === 'header') {
+                this.uploadHeaderToServer(file);
             }
         }
     }
 
     uploadHeaderToServer(file: File) {
-      const formData = new FormData();
-      formData.append('header', file);
+        const formData = new FormData();
+        formData.append('header', file);
 
-      this.employerService.uploadHeader(this.companyId, formData)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-          next: () => {
-            this.toastService.showSuccessToast('Success', 'successfully change header!');
-          },
-          error: (error: HttpErrorResponse) => {
-            this.toastService.showErrorToast('Error', error.message);
-          },
-          complete: () => {
-            this.navigateAfterSucceed();
-          },
-        });
+        this.employerService
+            .uploadHeader(this.companyId, formData)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: () => {
+                    this.toastService.showSuccessToast('Success', 'successfully change header!');
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.toastService.showErrorToast('Error', error.message);
+                },
+                complete: () => {
+                    this.navigateAfterSucceed();
+                },
+            });
     }
 
     uploadLogoToServer(file: File) {
         const formData = new FormData();
         formData.append('logo', file);
 
-        this.employerService.uploadLogo(this.companyId, formData)
-          .pipe(takeUntilDestroyed(this.destroyRef))
-          .subscribe({
-            next: () => {
-              this.toastService.showSuccessToast('Success', 'successfully change logo!');
-            },
-            error: (error: HttpErrorResponse) => {
-                this.toastService.showErrorToast('Error', error.message);
-            },
-            complete: () => {
-                this.navigateAfterSucceed();
-            },
-        });
+        this.employerService
+            .uploadLogo(this.companyId, formData)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: () => {
+                    this.toastService.showSuccessToast('Success', 'successfully change logo!');
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.toastService.showErrorToast('Error', error.message);
+                },
+                complete: () => {
+                    this.navigateAfterSucceed();
+                },
+            });
     }
 
     navigateAfterSucceed(): void {

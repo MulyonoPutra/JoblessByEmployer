@@ -1,10 +1,10 @@
 import { Component, DestroyRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
+    FormBuilder,
+    FormGroup,
+    FormsModule,
+    ReactiveFormsModule,
+    Validators,
 } from '@angular/forms';
 import { take, timer } from 'rxjs';
 
@@ -19,84 +19,84 @@ import { UpdateAccountNameDto } from '../../../../core/domain/dto/update-account
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'account-detail-form',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, FormInputFieldComponent],
-  templateUrl: './account-detail-form.component.html',
-  styleUrls: ['./account-detail-form.component.scss'],
+    selector: 'account-detail-form',
+    standalone: true,
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, FormInputFieldComponent],
+    templateUrl: './account-detail-form.component.html',
+    styleUrls: ['./account-detail-form.component.scss'],
 })
 export class AccountDetailFormComponent implements OnInit {
-  @Input() employer!: Employer;
-  @Output() clicked = new EventEmitter();
+    @Input() employer!: Employer;
+    @Output() clicked = new EventEmitter();
 
-  form!: FormGroup;
-  isLoading: boolean = false;
+    form!: FormGroup;
+    isLoading: boolean = false;
 
-  constructor(
-    private readonly formBuilder: FormBuilder,
-    private readonly router: Router,
-    private readonly destroyRef: DestroyRef,
-    private readonly toastService: ToastService,
-    private readonly employerService: EmployerService,
-  ) {}
+    constructor(
+        private readonly formBuilder: FormBuilder,
+        private readonly router: Router,
+        private readonly destroyRef: DestroyRef,
+        private readonly toastService: ToastService,
+        private readonly employerService: EmployerService,
+    ) {}
 
-  ngOnInit(): void {
-    this.formInit();
-    if (this.employer) {
-      this.prepopulateForms(this.employer);
+    ngOnInit(): void {
+        this.formInit();
+        if (this.employer) {
+            this.prepopulateForms(this.employer);
+        }
     }
-  }
 
-  formInit(): void {
-    this.form = this.formBuilder.group({
-      accountName: ['', Validators.required],
-    });
-  }
-
-  get formCtrlValue(): UpdateAccountNameDto {
-    return {
-      accountName: this.form.get('accountName')?.value,
-    };
-  }
-
-  onClicked(): void {
-    this.clicked.emit();
-  }
-
-  saveChanges(): void {
-    if (this.form.valid) {
-      this.onCreate();
+    formInit(): void {
+        this.form = this.formBuilder.group({
+            accountName: ['', Validators.required],
+        });
     }
-  }
 
-  protected prepopulateForms(data: UpdateAccountNameDto): void {
-    this.form.patchValue({
-      accountName: data.accountName
-    });
-  }
+    get formCtrlValue(): UpdateAccountNameDto {
+        return {
+            accountName: this.form.get('accountName')?.value,
+        };
+    }
 
-  onCreate(): void {
-    this.employerService
-      .updateAccountName(this.formCtrlValue)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: () => {
-          this.toastService.showSuccessToast('Success', 'Created Account!');
-        },
-        error: (error: HttpErrorResponse) => {
-          this.toastService.showErrorToast('Error', error.message);
-        },
-        complete: () => {
-          this.navigateAfterSucceed();
-        },
-      });
-  }
+    onClicked(): void {
+        this.clicked.emit();
+    }
 
-  navigateAfterSucceed(): void {
-    timer(2000)
-      .pipe(take(1))
-      .subscribe(() =>
-        this.router.navigateByUrl('/account/details').then(() => window.location.reload()),
-      );
-  }
+    saveChanges(): void {
+        if (this.form.valid) {
+            this.onCreate();
+        }
+    }
+
+    protected prepopulateForms(data: UpdateAccountNameDto): void {
+        this.form.patchValue({
+            accountName: data.accountName,
+        });
+    }
+
+    onCreate(): void {
+        this.employerService
+            .updateAccountName(this.formCtrlValue)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: () => {
+                    this.toastService.showSuccessToast('Success', 'Created Account!');
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.toastService.showErrorToast('Error', error.message);
+                },
+                complete: () => {
+                    this.navigateAfterSucceed();
+                },
+            });
+    }
+
+    navigateAfterSucceed(): void {
+        timer(2000)
+            .pipe(take(1))
+            .subscribe(() =>
+                this.router.navigateByUrl('/account/details').then(() => window.location.reload()),
+            );
+    }
 }

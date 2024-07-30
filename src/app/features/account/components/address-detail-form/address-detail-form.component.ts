@@ -10,11 +10,8 @@ import {
 import { FormInputFieldComponent } from '../../../../shared/components/atoms/form-input-field/form-input-field.component';
 import { Router } from '@angular/router';
 import { timer, take } from 'rxjs';
-import { Company } from '../../../../core/domain/entities/company';
 import { ToastService } from '../../../../shared/services/toast.service';
-import { ValidationService } from '../../../../shared/services/validation.service';
 import { CreateAddressDto } from '../../../../core/domain/dto/create-address.dto';
-import { Employer } from '../../../../core/domain/entities/employer';
 import { EmployerService } from '../../../../core/services/employer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -38,15 +35,15 @@ export class AddressDetailFormComponent implements OnInit {
         private readonly router: Router,
         private readonly destroyRef: DestroyRef,
         private readonly toastService: ToastService,
-        private readonly employerService: EmployerService
+        private readonly employerService: EmployerService,
     ) {}
 
     @Output() clicked = new EventEmitter();
 
     ngOnInit(): void {
         this.initForm();
-        if(this.address) {
-          this.prepopulateForms(this.address);
+        if (this.address) {
+            this.prepopulateForms(this.address);
         }
     }
 
@@ -72,41 +69,42 @@ export class AddressDetailFormComponent implements OnInit {
         };
     }
 
-  protected prepopulateForms(data: CreateAddressDto): void {
-    this.form.patchValue({
-      street: data.street,
-      province: data.province,
-      regency: data.regency,
-      district: data.district,
-      village: data.village,
-      postCode: data.postCode,
-    });
-  }
+    protected prepopulateForms(data: CreateAddressDto): void {
+        this.form.patchValue({
+            street: data.street,
+            province: data.province,
+            regency: data.regency,
+            district: data.district,
+            village: data.village,
+            postCode: data.postCode,
+        });
+    }
 
     onClicked(): void {
         this.clicked.emit();
     }
 
     saveChanges(): void {
-      if(this.form.valid) {
-        this.onSubmit();
-      }
+        if (this.form.valid) {
+            this.onSubmit();
+        }
     }
 
     onSubmit(): void {
-      this.employerService.createAddress(this.companyId, this.formCtrlValue)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-          next: () => {
-            this.toastService.showSuccessToast('Success', 'successfully Create Address!');
-          },
-          error: (error: HttpErrorResponse) => {
-            this.toastService.showErrorToast('Error', error.message);
-          },
-          complete: () => {
-            this.navigateAfterSucceed();
-          },
-        });
+        this.employerService
+            .createAddress(this.companyId, this.formCtrlValue)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: () => {
+                    this.toastService.showSuccessToast('Success', 'successfully Create Address!');
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.toastService.showErrorToast('Error', error.message);
+                },
+                complete: () => {
+                    this.navigateAfterSucceed();
+                },
+            });
     }
 
     navigateAfterSucceed(): void {

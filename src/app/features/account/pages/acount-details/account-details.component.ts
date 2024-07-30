@@ -95,7 +95,7 @@ export class AccountDetailsComponent implements OnInit {
                         null;
 
                     this.company = employer.company;
-                    this.address = employer.company.address!
+                    this.address = employer.company.address!;
                     this.companyId = employer.company.id!;
 
                     this.companyName = employer.company.name;
