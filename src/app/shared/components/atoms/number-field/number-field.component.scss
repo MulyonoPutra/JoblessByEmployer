@@ -1,5 +1,15 @@
 :host {
     display: block;
+
+    ::ng-deep {
+        .p-inputtext.ng-dirty.ng-invalid {
+            border-color: #e24c4c;
+        }
+
+        .p-inputnumber-input {
+            @apply text-sm text-scarlet-900 italic;
+        }
+    }
 }
 
 .errors {
@@ -27,11 +37,5 @@
 @keyframes blinker {
     50% {
         opacity: 0;
-    }
-}
-
-::ng-deep {
-    .p-inputtext.ng-dirty.ng-invalid {
-        border-color: #e24c4c;
     }
 }

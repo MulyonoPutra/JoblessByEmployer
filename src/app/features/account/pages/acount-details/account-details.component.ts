@@ -6,6 +6,7 @@ import { Address } from '../../../../core/domain/entities/address';
 import { AddressDetailContentComponent } from '../../components/address-detail-content/address-detail-content.component';
 import { AddressDetailFormComponent } from '../../components/address-detail-form/address-detail-form.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { BrandLogoComponent } from '../../components/brand-logo/brand-logo.component';
 import { CardContentComponent } from '../../../../shared/components/molecules/card-content/card-content.component';
 import { CommonModule } from '@angular/common';
 import { Company } from '../../../../core/domain/entities/company';
@@ -42,6 +43,7 @@ interface CompleteMessage {
         CompanyDetailFormComponent,
         AddressDetailContentComponent,
         AddressDetailFormComponent,
+        BrandLogoComponent,
     ],
     templateUrl: './account-details.component.html',
     styleUrls: ['./account-details.component.scss'],
@@ -95,6 +97,8 @@ export class AccountDetailsComponent implements OnInit {
                         null;
 
                     this.company = employer.company;
+                    console.log(this.company);
+
                     this.address = employer.company.address!;
                     this.companyId = employer.company.id!;
 
@@ -116,29 +120,6 @@ export class AccountDetailsComponent implements OnInit {
         const company = this.companyId && item.tab === 'tabs-with-card-item-2';
         const address = this.addressId && item.tab === 'tabs-with-card-item-3';
         return account || address || company;
-    }
-
-    completeMessage(item: NavTabs): CompleteMessage | null {
-        const account = this.accountId && item.tab === 'tabs-with-card-item-1';
-        const company = this.companyId && item.tab === 'tabs-with-card-item-2';
-        const address = this.addressId && item.tab === 'tabs-with-card-item-3';
-        if (account) {
-            return {
-                title: 'Account Information Updated',
-                subtitle: 'Please provide the remaining details to finalize your profile.',
-            };
-        } else if (company) {
-            return {
-                title: 'Company Information Updated',
-                subtitle: 'Complete the remaining sections to finish your profile.',
-            };
-        } else if (address) {
-            return {
-                title: 'Address Information Updated',
-                subtitle: 'Fill in any additional details to complete your profile.',
-            };
-        }
-        return null;
     }
 
     toggleUpdate(type: 'account' | 'company' | 'address') {

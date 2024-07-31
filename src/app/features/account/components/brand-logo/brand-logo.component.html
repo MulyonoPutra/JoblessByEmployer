@@ -1,0 +1,97 @@
+<div class="max-w-4xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
+    <form>
+        <div class="bg-white shadow rounded-xl">
+            <div class="relative h-40 rounded-t-xl">
+                <img
+                    [src]="header ? header : emptyHeader"
+                    loading="lazy"
+                    alt="Header Image"
+                    class="object-cover w-full h-full rounded-t-xl" />
+            </div>
+
+            <div class="p-4 pt-0 sm:pt-0 sm:p-7">
+                <div class="space-y-4 sm:space-y-6">
+                    <div>
+                        <label class="sr-only"> Product photo </label>
+
+                        <div class="grid sm:flex sm:items-center sm:gap-x-5">
+                            <img
+                                class="relative z-10 inline-block mx-auto -mt-8 rounded-full size-24 sm:mx-0 ring-4 ring-white"
+                                [src]="logo ? logo : emptyLogo"
+                                alt="Image Description" />
+
+                            <div
+                                class="mt-4 sm:mt-auto sm:mb-1.5 flex justify-center sm:justify-start gap-2">
+                                <input
+                                    id="logo"
+                                    type="file"
+                                    class="hidden"
+                                    (change)="onChangeFile($event, 'logo')"
+                                    accept=".jpg,.jpeg,.png,.webp" />
+
+                                <button
+                                    (click)="triggerFileInput()"
+                                    type="button"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                                    <svg-icon
+                                        src="../../../../../assets/icons/upload.svg"
+                                        svgClass="flex-shrink-0 size-4"></svg-icon>
+                                    Upload logo
+                                </button>
+                                <button
+                                    type="button"
+                                    (click)="removeFile('logo')"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-red-500 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative p-4 space-y-2">
+                <label
+                    for="af-submit-app-upload-images"
+                    class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-neutral-200">
+                    Preview image
+                </label>
+
+                <label
+                    for="af-submit-app-upload-images"
+                    class="relative block p-4 text-center border-2 border-gray-200 border-dashed rounded-lg cursor-pointer group sm:p-7 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 dark:border-neutral-700">
+                    <div class="absolute top-0 p-4 end-0">
+                        <div
+                            class="p-4 mt-0.5 size-5 flex justify-center items-center rounded-full bg-violet-50 text-scarlet">
+                            <button type="button" (click)="removeFile('header')">
+                                <i class="pi pi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <input
+                        id="af-submit-app-upload-images"
+                        name="af-submit-app-upload-images"
+                        type="file"
+                        class="sr-only"
+                        (change)="onChangeFile($event, 'header')" />
+                    <svg-icon
+                        src="../../../../../assets/icons/upload.svg"
+                        svgClass="mx-auto text-gray-400 size-10" />
+                    <span class="block mt-2 text-sm text-gray-800 dark:text-neutral-200">
+                        Browse your device or
+                        <span class="text-blue-600 group-hover:text-blue-700">drag 'n drop'</span>
+                    </span>
+                    <span class="block mt-1 text-xs text-gray-500 dark:text-neutral-500">
+                        Maximum file size is 2 MB
+                    </span>
+                </label>
+            </div>
+
+            <div class="flex justify-center p-4 item-center">
+                <button type="button" class="btn-positive" (click)="saveChanges()">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

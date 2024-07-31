@@ -1,5 +1,15 @@
 :host {
     display: block;
+
+    ::ng-deep {
+        .p-inputtext.ng-dirty.ng-invalid {
+            border-color: #e24c4c;
+        }
+
+        .p-inputtext {
+            @apply text-sm text-scarlet-900 italic;
+        }
+    }
 }
 
 .errors {
@@ -29,10 +39,4 @@
 input {
     font-weight: 700;
     @apply rounded-lg border-scarlet-200 text-sm;
-}
-
-::ng-deep {
-    .p-inputtext.ng-dirty.ng-invalid {
-        border-color: #e24c4c;
-    }
 }
