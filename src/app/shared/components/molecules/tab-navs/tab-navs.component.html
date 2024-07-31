@@ -1,6 +1,8 @@
 <div
     class="p-4 cursor-pointer text-start hover:bg-gray-200 md:p-5 rounded-xl"
     (click)="setActiveTab(existTab)"
+    (keydown.enter)="setActiveTab(existTab)"
+    tabindex="0"
     [ngClass]="{ 'bg-white shadow-md hover:border-transparent': activeTab === existTab }"
     aria-controls="tabs-with-card-1"
     role="tab">

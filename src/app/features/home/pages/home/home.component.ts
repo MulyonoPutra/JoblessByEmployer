@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { Component, type OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -10,6 +10,4 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-    ngOnInit(): void {}
-}
+export class HomeComponent {}

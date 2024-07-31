@@ -39,7 +39,7 @@ export class FormCalendarFieldComponent {
         };
     }
 
-    get classFilled(): { [key: string]: boolean } {
+    get classFilled(): Record<string, boolean> {
         const isFilled = this.formGroup.get(this.fieldName)?.value !== '';
         return { 'p-filled': isFilled };
     }

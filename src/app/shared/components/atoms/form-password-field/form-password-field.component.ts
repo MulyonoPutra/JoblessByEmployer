@@ -20,13 +20,13 @@ export class FormPasswordFieldComponent implements OnInit {
     @Input() formGroup!: FormGroup;
     @Input() isDisabled!: FormGroup;
 
-    isPasswordVisible: boolean = false;
+    isPasswordVisible = false;
 
-    hasUpperCase: boolean = false;
-    hasLowerCase: boolean = false;
-    hasNumeric: boolean = false;
-    hasSpecialChar: boolean = false;
-    isValidLength: boolean = false;
+    hasUpperCase = false;
+    hasLowerCase = false;
+    hasNumeric = false;
+    hasSpecialChar = false;
+    isValidLength = false;
 
     iconChecklist = SvgIcons.checklistGreen;
     iconClose = SvgIcons.closeRed;
@@ -58,7 +58,7 @@ export class FormPasswordFieldComponent implements OnInit {
         return this.validation.getErrorMessage(control);
     }
 
-    get classFilled(): { [key: string]: boolean } {
+    get classFilled(): Record<string, boolean> {
         return {
             valid: !this.isInvalid,
             invalid: this.isInvalid,

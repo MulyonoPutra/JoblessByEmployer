@@ -33,7 +33,7 @@ import { ButtonComponent } from '../../../../shared/components/atoms/button/butt
 })
 export class UpdateStatusFormComponent implements OnInit {
     form!: FormGroup;
-    isLoading: boolean = false;
+    isLoading = false;
     jobAdsId!: string;
 
     constructor(

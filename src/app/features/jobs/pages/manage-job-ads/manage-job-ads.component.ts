@@ -12,7 +12,7 @@ import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dy
 import { UpdateStatusFormComponent } from '../../components/update-status-form/update-status-form.component';
 import { Application } from '../../../../core/domain/entities/application';
 
-type DialogConfig = {
+interface DialogConfig {
     header: string;
     width: string;
     modal: boolean;
@@ -21,12 +21,12 @@ type DialogConfig = {
         '640px': string;
     };
     data?: { id: string } | unknown;
-};
+}
 
-type Columns = {
+interface Columns {
     field: string;
     header: string;
-};
+}
 
 @Component({
     selector: 'app-manage-job-ads',
@@ -108,7 +108,6 @@ export class ManageJobAdsComponent implements OnInit {
                 error: (error: HttpErrorResponse) => {
                     this.toastService.showErrorToast('Error', error.message);
                 },
-                complete: () => {},
             });
     }
 
@@ -123,7 +122,6 @@ export class ManageJobAdsComponent implements OnInit {
                 error: (error: HttpErrorResponse) => {
                     this.toastService.showErrorToast('Error', error.message);
                 },
-                complete: () => {},
             });
     }
 

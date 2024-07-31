@@ -24,11 +24,6 @@ import { ToastService } from '../../../../shared/services/toast.service';
 import { UpdateAccountNameDto } from '../../../../core/domain/dto/update-account-name.dto';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-interface CompleteMessage {
-    title: string;
-    subtitle: string;
-}
-
 @Component({
     selector: 'app-account-details',
     standalone: true,
@@ -72,7 +67,7 @@ export class AccountDetailsComponent implements OnInit {
     companyId!: string;
 
     incompleteSections: NavTabs[] = IncompleteSections;
-    activeTab: string = 'tabs-with-card-item-1';
+    activeTab = 'tabs-with-card-item-1';
 
     ngOnInit(): void {
         this.findEmployer();
@@ -106,7 +101,6 @@ export class AccountDetailsComponent implements OnInit {
                 error: (error: HttpErrorResponse) => {
                     this.toastService.showErrorToast('Error', error.message);
                 },
-                complete: () => {},
             });
     }
 

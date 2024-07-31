@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import {
     HttpResponseEntity,

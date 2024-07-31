@@ -35,7 +35,7 @@ import { ValidationService } from '../../../../shared/services/validation.servic
 })
 export class RegisterComponent implements OnInit {
     form!: FormGroup;
-    isLoading: boolean = false;
+    isLoading = false;
 
     constructor(
         private readonly formBuilder: FormBuilder,

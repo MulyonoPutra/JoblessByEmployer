@@ -74,11 +74,11 @@
                         'Update and review your personal account information for managing your employer profile.'
                     ">
                     @if (isAccount) {
-                        <account-detail-form
+                        <app-account-detail-form
                             [employer]="employer"
                             (clicked)="toggleUpdate('account')" />
                     } @else {
-                        <account-detail-content [employer]="employer" />
+                        <app-account-detail-content [employer]="employer" />
                     }
                 </app-card-content>
             </div>

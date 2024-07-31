@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, type OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
 import { Address } from '../../../../core/domain/entities/address';
+import { CommonModule } from '@angular/common';
 import { EmptyStateComponent } from '../../../../shared/components/atoms/empty-state/empty-state.component';
 
 @Component({
@@ -10,9 +11,7 @@ import { EmptyStateComponent } from '../../../../shared/components/atoms/empty-s
     templateUrl: './address-detail-content.component.html',
     styleUrls: ['./address-detail-content.component.scss'],
 })
-export class AddressDetailContentComponent implements OnInit {
+export class AddressDetailContentComponent {
     @Input() address!: Address;
     @Input() companyName!: string;
-
-    ngOnInit(): void {}
 }

@@ -16,7 +16,7 @@ export class ValidationService {
     }
 
     indonesianPhoneNumber(): ValidatorFn {
-        return (control: AbstractControl): { [key: string]: unknown } | null => {
+        return (control: AbstractControl): Record<string, unknown> | null => {
             // Indonesian phone number pattern with "0" as the starting digit
             const phoneNumberPattern = /^0\d{9,15}$/;
             const valid = phoneNumberPattern.test(control.value);
@@ -58,7 +58,7 @@ export class ValidationService {
     }
 
     lowerCaseValidator(): ValidatorFn {
-        return (control: AbstractControl): { [key: string]: unknown } | null => {
+        return (control: AbstractControl): Record<string, unknown> | null => {
             const value = control.value;
             if (value == null) {
                 return null;
@@ -89,9 +89,9 @@ export class ValidationService {
     }
 
     combinedPasswordValidator(): ValidatorFn {
-        return (control: AbstractControl): { [key: string]: unknown } | null => {
+        return (control: AbstractControl): Record<string, unknown> | null => {
             const value = control.value;
-            const errors: { [key: string]: unknown } = {};
+            const errors: Record<string, unknown> = {};
 
             if (!/[a-z]/.test(value)) {
                 errors['hasLowerCase'] = true;

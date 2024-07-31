@@ -8,7 +8,6 @@ import {
     Validators,
 } from '@angular/forms';
 import { debounceTime } from 'rxjs';
-import { ClassifyDto } from '../../../../core/domain/dto/classify.dto';
 import { JobDescDto } from '../../../../core/domain/dto/job-desc.dto';
 import { EditorComponent } from '../../../../shared/components/atoms/editor/editor.component';
 
@@ -21,7 +20,7 @@ import { EditorComponent } from '../../../../shared/components/atoms/editor/edit
 })
 export class JobDescriptionFormComponent implements OnInit {
     form!: FormGroup;
-    isLoading: boolean = false;
+    isLoading = false;
     @Output() jobDesc = new EventEmitter<JobDescDto>();
     constructor(private readonly formBuilder: FormBuilder) {}
 

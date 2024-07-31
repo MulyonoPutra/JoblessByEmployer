@@ -36,7 +36,7 @@ import { LogoComponent } from '../../../../shared/components/atoms/logo/logo.com
 })
 export class LoginComponent implements OnInit {
     form!: FormGroup;
-    isLoading: boolean = false;
+    isLoading = false;
 
     constructor(
         private readonly formBuilder: FormBuilder,

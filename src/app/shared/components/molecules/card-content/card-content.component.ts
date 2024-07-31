@@ -1,5 +1,6 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, type OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-card-content',
@@ -8,7 +9,7 @@ import { Component, EventEmitter, Input, Output, type OnInit } from '@angular/co
     templateUrl: './card-content.component.html',
     styleUrls: ['./card-content.component.scss'],
 })
-export class CardContentComponent implements OnInit {
+export class CardContentComponent {
     @Input() title!: string;
     @Input() subtitle!: string;
     @Output() clicked = new EventEmitter();
@@ -16,6 +17,4 @@ export class CardContentComponent implements OnInit {
     onClicked(): void {
         this.clicked.emit();
     }
-
-    ngOnInit(): void {}
 }

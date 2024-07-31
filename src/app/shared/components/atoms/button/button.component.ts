@@ -15,11 +15,11 @@ export class ButtonComponent {
     @Input({ required: false }) icons?: string;
     @Input({ required: false }) width?: string;
     @Input({ required: false }) isDisabled!: boolean;
-    @Input({ required: false }) isCancel: boolean = false;
+    @Input({ required: false }) isCancel = false;
     @Input({ required: false }) isLoading!: boolean;
     @Input({ required: false }) isLarge!: boolean;
     @Input({ required: false }) withIcon!: boolean;
-    @Input() type = 'cancel' || 'save';
+    @Input() type: 'cancel' | 'save' = 'cancel';
 
     @Output() clicked = new EventEmitter();
 

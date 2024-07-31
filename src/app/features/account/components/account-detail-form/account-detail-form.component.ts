@@ -19,7 +19,7 @@ import { UpdateAccountNameDto } from '../../../../core/domain/dto/update-account
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-    selector: 'account-detail-form',
+    selector: 'app-account-detail-form',
     standalone: true,
     imports: [CommonModule, FormsModule, ReactiveFormsModule, FormInputFieldComponent],
     templateUrl: './account-detail-form.component.html',
@@ -30,7 +30,7 @@ export class AccountDetailFormComponent implements OnInit {
     @Output() clicked = new EventEmitter();
 
     form!: FormGroup;
-    isLoading: boolean = false;
+    isLoading = false;
 
     constructor(
         private readonly formBuilder: FormBuilder,

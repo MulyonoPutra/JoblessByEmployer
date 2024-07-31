@@ -36,7 +36,7 @@ import { StorageService } from '../../../../shared/services/storage.service';
 })
 export class CompanyDetailFormComponent implements OnInit {
     form!: FormGroup;
-    isLoading: boolean = false;
+    isLoading = false;
 
     @Input() companyId!: string;
     @Input() company!: Company;
@@ -95,7 +95,7 @@ export class CompanyDetailFormComponent implements OnInit {
         };
     }
 
-    protected prepopulateForms(data: any): void {
+    protected prepopulateForms(data: Company): void {
         this.form.patchValue({
             name: data.name,
             website: data.website,
@@ -106,8 +106,8 @@ export class CompanyDetailFormComponent implements OnInit {
             benefit: data.benefit,
             contactInfo: data.contactInfo,
         });
-        this.logo = data.logo;
-        this.header = data.header;
+        this.logo = data.logo!;
+        this.header = data.header!;
     }
 
     onClicked(): void {

@@ -28,6 +28,4 @@ export class CompanyDetailContentComponent {
     onClicked(): void {
         this.clicked.emit();
     }
-
-    toggle(): void {}
 }

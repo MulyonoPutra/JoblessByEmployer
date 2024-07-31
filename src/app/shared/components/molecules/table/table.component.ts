@@ -1,11 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, TemplateRef, type OnInit } from '@angular/core';
-import { InputTextModule } from 'primeng/inputtext';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { Table, TableModule } from 'primeng/table';
+
+import { ButtonModule } from 'primeng/button';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CommonModule } from '@angular/common';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-table',
@@ -22,14 +24,13 @@ import { ButtonModule } from 'primeng/button';
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
     @Output() edited = new EventEmitter<string>();
     @Output() deleted = new EventEmitter<string>();
     @Output() created = new EventEmitter();
     @Input() records!: any[];
     @Input() filter!: string[];
     @Input() columns: { field: string; header: string; template?: TemplateRef<any> }[] = [];
-    ngOnInit(): void {}
 
     onSearch(table: Table, event: Event) {
         const target = event.target as HTMLInputElement;

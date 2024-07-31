@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, type OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-profile-completion',
@@ -8,6 +8,4 @@ import { Component, type OnInit } from '@angular/core';
     templateUrl: './profile-completion.component.html',
     styleUrls: ['./profile-completion.component.scss'],
 })
-export class ProfileCompletionComponent implements OnInit {
-    ngOnInit(): void {}
-}
+export class ProfileCompletionComponent {}

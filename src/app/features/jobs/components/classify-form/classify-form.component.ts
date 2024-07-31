@@ -13,10 +13,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { NumberFieldComponent } from '../../../../shared/components/atoms/number-field/number-field.component';
 import { ClassifyDto } from '../../../../core/domain/dto/classify.dto';
 
-type CheckboxType = {
+interface CheckboxType {
     name: string;
     key: string;
-};
+}
 
 @Component({
     selector: 'app-classify-form',
@@ -34,7 +34,7 @@ type CheckboxType = {
 })
 export class ClassifyFormComponent implements OnInit {
     form!: FormGroup;
-    isLoading: boolean = false;
+    isLoading = false;
     @Output() classify = new EventEmitter<ClassifyDto>();
 
     workTypes: CheckboxType[] = [

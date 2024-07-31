@@ -84,7 +84,6 @@ export class MainComponent implements OnInit {
                 error: (error: HttpErrorResponse) => {
                     this.toastService.showErrorToast('Error', error.message);
                 },
-                complete: () => {},
             });
     }
 

@@ -20,7 +20,7 @@ import { FormInputFieldComponent } from '../../../../shared/components/atoms/for
 })
 export class ManageCandidateComponent implements OnInit {
     form!: FormGroup;
-    isLoading: boolean = false;
+    isLoading = false;
     @Output() reference = new EventEmitter<ReferenceDto>();
     constructor(private readonly formBuilder: FormBuilder) {}
 

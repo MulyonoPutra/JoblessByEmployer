@@ -1,4 +1,5 @@
 import { Company } from './company';
+import { JobAds } from './job-ads';
 import { User } from './user';
 
 export interface Employer {
@@ -6,6 +7,6 @@ export interface Employer {
     accountName: string;
     accountNumber: string;
     company: Company;
-    jobAds?: any[];
+    jobAds?: JobAds[];
     user: User;
 }

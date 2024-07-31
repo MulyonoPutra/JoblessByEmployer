@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./skeleton-loader.component.scss'],
 })
 export class SkeletonLoaderComponent {
-    @Input() isCompany: boolean = false;
+    @Input() isCompany = false;
 }

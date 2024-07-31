@@ -26,7 +26,7 @@ import { Address } from '../../../../core/domain/entities/address';
 })
 export class AddressDetailFormComponent implements OnInit {
     form!: FormGroup;
-    isLoading: boolean = false;
+    isLoading = false;
     @Input() companyId!: string;
     @Input() address!: Address;
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, type OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-contact-us',
@@ -8,6 +8,4 @@ import { Component, type OnInit } from '@angular/core';
     templateUrl: './contact-us.component.html',
     styleUrls: ['./contact-us.component.scss'],
 })
-export class ContactUsComponent implements OnInit {
-    ngOnInit(): void {}
-}
+export class ContactUsComponent {}
