@@ -6,6 +6,6 @@ export interface Employer {
     accountName: string;
     accountNumber: string;
     company: Company;
-    jobAds: any[];
+    jobAds?: any[];
     user: User;
 }

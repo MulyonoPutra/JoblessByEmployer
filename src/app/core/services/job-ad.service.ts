@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, catchError, map } from 'rxjs';
 
 import { CreateJobAdsDto } from '../domain/dto/create-job-ads.dto';
@@ -27,15 +27,13 @@ export class JobAdService {
             .pipe(catchError((error: HttpErrorResponse) => handlerHttpError(error)));
     }
 
-    findJobAdsByEmployerId(status: string): Observable<JobAds[]> {
-        const employerId = this.storageService.getEmployerIdentity();
-        return this.http
-            .get<
-                HttpResponseEntity<JobAds[]>
-            >(`${this.endpoint}/employer/job-ads/${employerId}?status=${status}`)
-            .pipe(
-                map((response) => response.data),
-                catchError((error: HttpErrorResponse) => handlerHttpError(error)),
-            );
+  findJobAdsByEmployerId(employerId: string, status: string): Observable<JobAds[]> {
+    const endpoint = `${this.endpoint}/employer/job-ads/status`
+    const params = new HttpParams()
+      .set('employerId', employerId)
+      .set('status', status);
+
+    return this.http.get<any>(endpoint, { params })
+      .pipe(map((response) => response.data), catchError((error: HttpErrorResponse) => handlerHttpError(error)));
     }
 }

@@ -7,6 +7,7 @@ import { ToastService } from '../../../../shared/services/toast.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { JobAds } from '../../../../core/domain/entities/job-ads';
+import { StorageService } from '../../../../shared/services/storage.service';
 
 @Component({
     selector: 'app-manage-job-ads',
@@ -16,12 +17,18 @@ import { JobAds } from '../../../../core/domain/entities/job-ads';
     styleUrls: ['./manage-job-ads.component.scss'],
 })
 export class ManageJobAdsComponent implements OnInit {
+
+  employerId!: string
+
     constructor(
         private readonly router: Router,
         private readonly toastService: ToastService,
         private readonly destroyRef: DestroyRef,
         private readonly jobAdService: JobAdService,
-    ) {}
+        private readonly storageService: StorageService
+    ) {
+      this.employerId = this.storageService.getEmployerIdentity();
+    }
 
     data!: JobAds[];
     filterFields: string[] = [];
@@ -37,7 +44,7 @@ export class ManageJobAdsComponent implements OnInit {
 
     findJobAdsByEmployerId(status: string): void {
         this.jobAdService
-            .findJobAdsByEmployerId(status)
+          .findJobAdsByEmployerId(this.employerId, status)
             .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe({
                 next: (data: JobAds[]) => {
