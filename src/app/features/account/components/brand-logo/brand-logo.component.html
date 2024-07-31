@@ -72,14 +72,16 @@
                         id="af-submit-app-upload-images"
                         name="af-submit-app-upload-images"
                         type="file"
-                        class="sr-only "
+                        class="sr-only"
                         (change)="onChangeFile($event, 'header')" />
                     <svg-icon
                         src="../../../../../assets/icons/upload.svg"
                         svgClass="mx-auto text-gray-400 size-10" />
                     <span class="block mt-2 text-sm text-scarlet dark:text-neutral-200">
                         Browse your device or
-                        <span class="text-scarlet-600 group-hover:text-scarlet-700">drag 'n drop'</span>
+                        <span class="text-scarlet-600 group-hover:text-scarlet-700"
+                            >drag 'n drop'</span
+                        >
                     </span>
                     <span class="block mt-1 text-xs text-scarlet-500">
                         Maximum file size is 2 MB

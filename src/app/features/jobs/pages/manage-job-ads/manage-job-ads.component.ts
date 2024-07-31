@@ -12,14 +12,14 @@ import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dy
 import { UpdateStatusFormComponent } from '../../components/update-status-form/update-status-form.component';
 
 type DialogConfig = {
-  header: string;
-  width: string;
-  modal: boolean;
-  breakpoints: {
-    '960px': string;
-    '640px': string;
-  };
-  data?: { id: string } | unknown;
+    header: string;
+    width: string;
+    modal: boolean;
+    breakpoints: {
+        '960px': string;
+        '640px': string;
+    };
+    data?: { id: string } | unknown;
 };
 
 @Component({
@@ -106,20 +106,20 @@ export class ManageJobAdsComponent implements OnInit {
     }
 
     onEdit(id?: string): void {
-      const config: DialogConfig = {
-        header: 'Update Job Ads Status',
-        width: '50vw',
-        modal: true,
-        breakpoints: {
-          '960px': '75vw',
-          '640px': '90vw',
-        },
-      };
+        const config: DialogConfig = {
+            header: 'Update Job Ads Status',
+            width: '50vw',
+            modal: true,
+            breakpoints: {
+                '960px': '75vw',
+                '640px': '90vw',
+            },
+        };
 
-      if (id) {
-        config.data = { id };
-      }
+        if (id) {
+            config.data = { id };
+        }
 
-      this.ref = this.dialogService.open(UpdateStatusFormComponent, config);
+        this.ref = this.dialogService.open(UpdateStatusFormComponent, config);
     }
 }

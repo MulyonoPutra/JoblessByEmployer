@@ -1,3 +1,3 @@
 export interface UpdateJobAdStatusDto {
-  status: string;
+    status: string;
 }

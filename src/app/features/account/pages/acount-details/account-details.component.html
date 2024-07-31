@@ -70,7 +70,9 @@
                 <app-card-content
                     (clicked)="toggleUpdate('account')"
                     [title]="'Manage Personal Account Details'"
-                    [subtitle]="'Update and review your personal account information for managing your employer profile.'">
+                    [subtitle]="
+                        'Update and review your personal account information for managing your employer profile.'
+                    ">
                     @if (isAccount) {
                         <account-detail-form
                             [employer]="employer"
@@ -91,7 +93,9 @@
                     <app-card-content
                         (clicked)="toggleUpdate('company')"
                         [title]="'Company Profile Management'"
-                        [subtitle]="'Update and review your company details to ensure they are current and correctly displayed.'">
+                        [subtitle]="
+                            'Update and review your company details to ensure they are current and correctly displayed.'
+                        ">
                         <app-company-detail-content
                             [company]="company"
                             (clicked)="toggleUpdate('company')" />
@@ -107,7 +111,9 @@
                 <app-card-content
                     (clicked)="toggleUpdate('address')"
                     [title]="'Update Company Address'"
-                    [subtitle]="'Keep your company address details current to ensure accurate job posting information.'">
+                    [subtitle]="
+                        'Keep your company address details current to ensure accurate job posting information.'
+                    ">
                     @if (isAddress) {
                         <app-address-detail-form [address]="address" [companyId]="companyId" />
                     } @else {

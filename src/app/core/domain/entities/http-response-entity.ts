@@ -4,5 +4,5 @@ export interface HttpResponseEntity<T> {
 }
 
 export interface HttpResponseMessageEntity {
-  message: string;
+    message: string;
 }

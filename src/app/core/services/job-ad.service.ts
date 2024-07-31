@@ -38,10 +38,13 @@ export class JobAdService {
         );
     }
 
-  updateJobAdStatus(jobAdsId: string, body: UpdateJobAdStatusDto): Observable<HttpResponseMessageEntity> {
-    const endpoint = `${this.endpoint}/employer/job-ads/${jobAdsId}/status`;
-    return this.http.patch<HttpResponseMessageEntity>(endpoint, body).pipe(
-      catchError((error: HttpErrorResponse) => handlerHttpError(error)),
-    );
-  }
+    updateJobAdStatus(
+        jobAdsId: string,
+        body: UpdateJobAdStatusDto,
+    ): Observable<HttpResponseMessageEntity> {
+        const endpoint = `${this.endpoint}/employer/job-ads/${jobAdsId}/status`;
+        return this.http
+            .patch<HttpResponseMessageEntity>(endpoint, body)
+            .pipe(catchError((error: HttpErrorResponse) => handlerHttpError(error)));
+    }
 }
