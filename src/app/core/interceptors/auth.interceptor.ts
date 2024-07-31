@@ -14,12 +14,14 @@ import { HttpResponseEntity } from '../domain/entities/http-response-entity';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from '../../shared/services/storage.service';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     constructor(
         private storageService: StorageService,
         private authService: AuthenticationService,
+        private toastService: ToastService,
         private router: Router,
     ) {}
 
@@ -49,7 +51,9 @@ export class AuthInterceptor implements HttpInterceptor {
                     return this.handle401Unauthorized(request, next);
                 }
                 const errors = error.error?.message || error.statusText;
-                return throwError(() => errors);
+                return throwError(() => {
+                  this.toastService.showErrorToast('Error', errors);
+                });
             }),
         );
     }
@@ -84,7 +88,9 @@ export class AuthInterceptor implements HttpInterceptor {
                     catchError((error: HttpErrorResponse) => {
                         this.isRefreshing = false;
                         this.handleTokenExpired();
-                        return throwError(() => error.message);
+                        return throwError(() => {
+                          this.toastService.showErrorToast('Error', error.message);
+                        });
                     }),
                 );
             }
@@ -100,8 +106,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     private handleTokenExpired() {
-        console.log('refresh token is expired, please login again.');
-        alert('refresh token is expired, please login again.');
+      this.toastService.showErrorToast('Error', 'Refresh token is expired, please login again.');
 
         this.storageService.clear();
         this.router.navigate(['/auth/login']);

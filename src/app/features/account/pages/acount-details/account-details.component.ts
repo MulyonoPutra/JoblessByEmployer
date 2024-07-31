@@ -93,11 +93,10 @@ export class AccountDetailsComponent implements OnInit {
                     this.isAccount = this.employer.accountName === null;
                     this.isCompany = (this.employer.company && this.employer.company.id) === null;
                     this.isAddress =
-                        (this.employer.company.address && this.employer.company.address.id) ===
+                        (this.employer.company?.address && this.employer.company.address.id) ===
                         null;
 
                     this.company = employer.company;
-                    console.log(this.company);
 
                     this.address = employer.company.address!;
                     this.companyId = employer.company.id!;

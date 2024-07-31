@@ -33,6 +33,16 @@
             (click)="sendStatus('draft')">
             Draft
         </button>
+        <button
+            type="button"
+            class="tabs"
+            id="card-type-tab-item-4"
+            aria-selected="false"
+            data-hs-tab="#card-type-tab-4"
+            aria-controls="card-type-tab-4"
+            role="tab">
+            Applicant
+        </button>
     </nav>
 </div>
 
@@ -59,6 +69,15 @@
         <app-table
             [columns]="columns"
             [records]="data"
+            [filter]="['title']"
+            (created)="onCreate()"
+            (edited)="onEdit($event)"
+            (deleted)="onDelete()" />
+    </div>
+    <div id="card-type-tab-4" class="hidden" role="tabpanel" aria-labelledby="card-type-tab-item-4">
+              <app-table
+            [columns]="applicationColumns"
+            [records]="applications"
             [filter]="['title']"
             (created)="onCreate()"
             (edited)="onEdit($event)"

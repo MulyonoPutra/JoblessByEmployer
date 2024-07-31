@@ -10,6 +10,7 @@ import { JobAds } from '../../../../core/domain/entities/job-ads';
 import { StorageService } from '../../../../shared/services/storage.service';
 import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UpdateStatusFormComponent } from '../../components/update-status-form/update-status-form.component';
+import { Application } from '../../../../core/domain/entities/application';
 
 type DialogConfig = {
     header: string;
@@ -20,6 +21,11 @@ type DialogConfig = {
         '640px': string;
     };
     data?: { id: string } | unknown;
+};
+
+type Columns = {
+    field: string;
+    header: string;
 };
 
 @Component({
@@ -46,11 +52,44 @@ export class ManageJobAdsComponent implements OnInit {
     }
 
     data!: JobAds[];
+    applications!: Application[];
     filterFields: string[] = [];
-    columns!: any[];
+    columns!: Columns[];
+
+  applicationColumns: Columns[] = [
+    {
+      field: 'id',
+      header: 'Application ID',
+    },
+    {
+      field: 'createdAt',
+      header: 'Applied Date',
+    },
+    {
+      field: 'jobAdsId',
+      header: 'Jobs ID',
+    },
+    {
+      field: 'seekerId',
+      header: 'Seeker ID',
+    },
+    {
+      field: 'seeker.user.name',
+      header: 'Name',
+    },
+    {
+      field: 'jobAds.status',
+      header: 'Status',
+    },
+    {
+      field: 'jobAds.title',
+      header: 'Position',
+    },
+  ];
 
     ngOnInit() {
         this.findJobAdsByEmployerId('open');
+        this.findApplicationByEmployerId();
     }
 
     sendStatus(status: string) {
@@ -65,6 +104,21 @@ export class ManageJobAdsComponent implements OnInit {
                 next: (data: JobAds[]) => {
                     this.data = data;
                     this.setColumns();
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.toastService.showErrorToast('Error', error.message);
+                },
+                complete: () => {},
+            });
+    }
+
+    findApplicationByEmployerId(): void {
+        this.jobAdService
+            .findApplicationByEmployerId(this.employerId)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: (applications) => {
+                    this.applications = applications;
                 },
                 error: (error: HttpErrorResponse) => {
                     this.toastService.showErrorToast('Error', error.message);
