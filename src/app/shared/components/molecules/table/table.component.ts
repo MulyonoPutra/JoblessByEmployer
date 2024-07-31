@@ -23,8 +23,8 @@ import { ButtonModule } from 'primeng/button';
     styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-    @Output() edited = new EventEmitter();
-    @Output() deleted = new EventEmitter();
+    @Output() edited = new EventEmitter<string>();
+    @Output() deleted = new EventEmitter<string>();
     @Output() created = new EventEmitter();
     @Input() records!: any[];
     @Input() filter!: string[];
@@ -37,12 +37,12 @@ export class TableComponent implements OnInit {
         table.filterGlobal(value, 'contains');
     }
 
-    onEdit() {
-        this.edited.emit();
+    onEdit(id: string) {
+        this.edited.emit(id);
     }
 
-    onDelete() {
-        this.deleted.emit();
+    onDelete(id: string) {
+        this.deleted.emit(id);
     }
 
     onClick() {

@@ -43,7 +43,7 @@
             [records]="data"
             [filter]="filterFields"
             (created)="onCreate()"
-            (edited)="onEdit()"
+            (edited)="onEdit($event)"
             (deleted)="onDelete()" />
     </div>
     <div id="card-type-tab-2" class="hidden" role="tabpanel" aria-labelledby="card-type-tab-item-2">
@@ -52,7 +52,7 @@
             [records]="data"
             [filter]="['title']"
             (created)="onCreate()"
-            (edited)="onEdit()"
+            (edited)="onEdit($event)"
             (deleted)="onDelete()" />
     </div>
     <div id="card-type-tab-3" class="hidden" role="tabpanel" aria-labelledby="card-type-tab-item-3">
@@ -61,7 +61,7 @@
             [records]="data"
             [filter]="['title']"
             (created)="onCreate()"
-            (edited)="onEdit()"
+            (edited)="onEdit($event)"
             (deleted)="onDelete()" />
     </div>
 </div>

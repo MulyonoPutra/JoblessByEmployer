@@ -53,11 +53,11 @@
                     </td>
                 }
                 <td>
-                    <div class="flex space-x-4 ...">
-                        <button (click)="onEdit()">
+                    <div class="flex space-x-4">
+                        <button (click)="onEdit(rowData.id)">
                             <i class="pi pi-pen-to-square" style="font-size: 1rem"></i>
                         </button>
-                        <button (click)="onDelete()">
+                        <button (click)="onDelete(rowData.id)">
                             <i class="pi pi-trash" style="font-size: 1rem"></i>
                         </button>
                     </div>
