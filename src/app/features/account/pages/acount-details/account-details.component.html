@@ -69,8 +69,8 @@
             <div data-hs-stepper-content-item='{ "index": 1 }'>
                 <app-card-content
                     (clicked)="toggleUpdate('account')"
-                    [title]="'Personal Detail'"
-                    [subtitle]="'Manage your personal information'">
+                    [title]="'Manage Personal Account Details'"
+                    [subtitle]="'Update and review your personal account information for managing your employer profile.'">
                     @if (isAccount) {
                         <account-detail-form
                             [employer]="employer"
@@ -90,8 +90,8 @@
                 } @else {
                     <app-card-content
                         (clicked)="toggleUpdate('company')"
-                        [title]="'Company Detail'"
-                        [subtitle]="'Manage your Company information'">
+                        [title]="'Company Profile Management'"
+                        [subtitle]="'Update and review your company details to ensure they are current and correctly displayed.'">
                         <app-company-detail-content
                             [company]="company"
                             (clicked)="toggleUpdate('company')" />
@@ -106,8 +106,8 @@
             <div data-hs-stepper-content-item='{ "index": 4 }' style="display: none">
                 <app-card-content
                     (clicked)="toggleUpdate('address')"
-                    [title]="'Address Detail'"
-                    [subtitle]="'Manage your address  information'">
+                    [title]="'Update Company Address'"
+                    [subtitle]="'Keep your company address details current to ensure accurate job posting information.'">
                     @if (isAddress) {
                         <app-address-detail-form [address]="address" [companyId]="companyId" />
                     } @else {
