@@ -43,8 +43,8 @@ export class CompanyDetailFormComponent implements OnInit {
 
     employerId!: string;
 
-    imgBase64!: string;
-    imgHeader!: string;
+    logo!: string;
+    header!: string;
     emptyLogo = 'https://preline.co/assets/img/160x160/img1.jpg';
     emptyHeader = 'https://preline.co/assets/svg/examples/abstract-bg-1.svg';
 
@@ -106,8 +106,8 @@ export class CompanyDetailFormComponent implements OnInit {
             benefit: data.benefit,
             contactInfo: data.contactInfo,
         });
-        this.imgBase64 = data.logo;
-        this.imgHeader = data.header;
+        this.logo = data.logo;
+        this.header = data.header;
     }
 
     onClicked(): void {
@@ -127,85 +127,6 @@ export class CompanyDetailFormComponent implements OnInit {
             .subscribe({
                 next: () => {
                     this.toastService.showSuccessToast('Success', 'successfully change header!');
-                },
-                error: (error: HttpErrorResponse) => {
-                    this.toastService.showErrorToast('Error', error.message);
-                },
-                complete: () => {
-                    this.navigateAfterSucceed();
-                },
-            });
-    }
-
-    triggerFileInput(): void {
-        const logo = document.getElementById('logo') as HTMLInputElement;
-        logo.click();
-    }
-
-    triggerHeaderInput(): void {
-        const header = document.getElementById('header') as HTMLInputElement;
-        header.click();
-    }
-
-    onChangeFile(event: Event, type: string): void {
-        const inputElement = event.target as HTMLInputElement;
-
-        if (inputElement.files && inputElement.files[0]) {
-            const file = inputElement.files[0];
-
-            if (!this.validationService.isValidImageType(file)) {
-                this.toastService.showErrorToast(
-                    'Error',
-                    'Only JPG, PNG, and WebP image formats are allowed.',
-                );
-                return;
-            }
-
-            if (!this.validationService.isValidFileSize(file)) {
-                this.toastService.showErrorToast('Error', 'Image size exceeds the limit of 5 MB.');
-                return;
-            }
-
-            if (type === 'logo') {
-                this.imgBase64 = URL.createObjectURL(file);
-                this.uploadLogoToServer(file);
-            } else if (type === 'header') {
-                this.imgHeader = URL.createObjectURL(file);
-                this.uploadHeaderToServer(file);
-            }
-        }
-    }
-
-    uploadHeaderToServer(file: File) {
-        const formData = new FormData();
-        formData.append('header', file);
-
-        this.employerService
-            .uploadHeader(this.companyId, formData)
-            .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe({
-                next: () => {
-                    this.toastService.showSuccessToast('Success', 'successfully change header!');
-                },
-                error: (error: HttpErrorResponse) => {
-                    this.toastService.showErrorToast('Error', error.message);
-                },
-                complete: () => {
-                    this.navigateAfterSucceed();
-                },
-            });
-    }
-
-    uploadLogoToServer(file: File) {
-        const formData = new FormData();
-        formData.append('logo', file);
-
-        this.employerService
-            .uploadLogo(this.companyId, formData)
-            .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe({
-                next: () => {
-                    this.toastService.showSuccessToast('Success', 'successfully change logo!');
                 },
                 error: (error: HttpErrorResponse) => {
                     this.toastService.showErrorToast('Error', error.message);
