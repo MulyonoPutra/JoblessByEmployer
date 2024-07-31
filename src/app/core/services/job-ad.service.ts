@@ -1,5 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { HttpResponseEntity, HttpResponseMessageEntity } from '../domain/entities/http-response-entity';
+import {
+    HttpResponseEntity,
+    HttpResponseMessageEntity,
+} from '../domain/entities/http-response-entity';
 import { Observable, catchError, map } from 'rxjs';
 
 import { Application } from '../domain/entities/application';
@@ -50,20 +53,18 @@ export class JobAdService {
     }
 
     findApplicationByJobAdsId(jobAdsId: string): Observable<Application[]> {
-      const endpoint = `${this.endpoint}/employer/job-ads/application/${jobAdsId}`;
-      return this.http
-        .get<HttpResponseEntity<Application[]>>(endpoint)
-        .pipe(
-          map((response) => response.data),
-          catchError((error: HttpErrorResponse) => handlerHttpError(error)));
+        const endpoint = `${this.endpoint}/employer/job-ads/application/${jobAdsId}`;
+        return this.http.get<HttpResponseEntity<Application[]>>(endpoint).pipe(
+            map((response) => response.data),
+            catchError((error: HttpErrorResponse) => handlerHttpError(error)),
+        );
     }
 
     findApplicationByEmployerId(employerId: string): Observable<Application[]> {
-      const endpoint = `${this.endpoint}/employer/applications/${employerId}`;
-      return this.http
-        .get<HttpResponseEntity<Application[]>>(endpoint)
-        .pipe(
-          map((response) => response.data),
-          catchError((error: HttpErrorResponse) => handlerHttpError(error)));
+        const endpoint = `${this.endpoint}/employer/applications/${employerId}`;
+        return this.http.get<HttpResponseEntity<Application[]>>(endpoint).pipe(
+            map((response) => response.data),
+            catchError((error: HttpErrorResponse) => handlerHttpError(error)),
+        );
     }
 }

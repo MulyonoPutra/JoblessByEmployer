@@ -37,9 +37,9 @@ export class TableComponent implements OnInit {
         table.filterGlobal(value, 'contains');
     }
 
-  resolveField(rowData: any, field: string) {
-    return field.split('.').reduce((prev, curr) => prev && prev[curr], rowData);
-  }
+    resolveField(rowData: any, field: string) {
+        return field.split('.').reduce((prev, curr) => prev && prev[curr], rowData);
+    }
 
     onEdit(id: string) {
         this.edited.emit(id);

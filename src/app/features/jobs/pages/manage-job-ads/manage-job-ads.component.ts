@@ -56,36 +56,36 @@ export class ManageJobAdsComponent implements OnInit {
     filterFields: string[] = [];
     columns!: Columns[];
 
-  applicationColumns: Columns[] = [
-    {
-      field: 'id',
-      header: 'Application ID',
-    },
-    {
-      field: 'createdAt',
-      header: 'Applied Date',
-    },
-    {
-      field: 'jobAdsId',
-      header: 'Jobs ID',
-    },
-    {
-      field: 'seekerId',
-      header: 'Seeker ID',
-    },
-    {
-      field: 'seeker.user.name',
-      header: 'Name',
-    },
-    {
-      field: 'jobAds.status',
-      header: 'Status',
-    },
-    {
-      field: 'jobAds.title',
-      header: 'Position',
-    },
-  ];
+    applicationColumns: Columns[] = [
+        {
+            field: 'id',
+            header: 'Application ID',
+        },
+        {
+            field: 'createdAt',
+            header: 'Applied Date',
+        },
+        {
+            field: 'jobAdsId',
+            header: 'Jobs ID',
+        },
+        {
+            field: 'seekerId',
+            header: 'Seeker ID',
+        },
+        {
+            field: 'seeker.user.name',
+            header: 'Name',
+        },
+        {
+            field: 'jobAds.status',
+            header: 'Status',
+        },
+        {
+            field: 'jobAds.title',
+            header: 'Position',
+        },
+    ];
 
     ngOnInit() {
         this.findJobAdsByEmployerId('open');

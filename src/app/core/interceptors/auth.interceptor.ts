@@ -52,7 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 }
                 const errors = error.error?.message || error.statusText;
                 return throwError(() => {
-                  this.toastService.showErrorToast('Error', errors);
+                    this.toastService.showErrorToast('Error', errors);
                 });
             }),
         );
@@ -89,7 +89,7 @@ export class AuthInterceptor implements HttpInterceptor {
                         this.isRefreshing = false;
                         this.handleTokenExpired();
                         return throwError(() => {
-                          this.toastService.showErrorToast('Error', error.message);
+                            this.toastService.showErrorToast('Error', error.message);
                         });
                     }),
                 );
@@ -106,7 +106,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     private handleTokenExpired() {
-      this.toastService.showErrorToast('Error', 'Refresh token is expired, please login again.');
+        this.toastService.showErrorToast('Error', 'Refresh token is expired, please login again.');
 
         this.storageService.clear();
         this.router.navigate(['/auth/login']);
