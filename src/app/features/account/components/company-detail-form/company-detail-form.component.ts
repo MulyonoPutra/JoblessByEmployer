@@ -18,8 +18,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { EmployerService } from '../../../../core/services/employer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Employer } from '../../../../core/domain/entities/employer';
-import { CreateAddressDto } from '../../../../core/domain/dto/create-address.dto';
+import { StorageService } from '../../../../shared/services/storage.service';
 
 @Component({
     selector: 'app-company-detail-form',
@@ -42,6 +41,8 @@ export class CompanyDetailFormComponent implements OnInit {
     @Input() companyId!: string;
     @Input() company!: Company;
 
+    employerId!: string;
+
     imgBase64!: string;
     imgHeader!: string;
     emptyLogo = 'https://preline.co/assets/img/160x160/img1.jpg';
@@ -54,7 +55,10 @@ export class CompanyDetailFormComponent implements OnInit {
         private readonly validationService: ValidationService,
         private readonly toastService: ToastService,
         private readonly employerService: EmployerService,
-    ) {}
+        private readonly storageService: StorageService
+    ) {
+      this.employerId = storageService.getEmployerIdentity();
+    }
 
     @Output() clicked = new EventEmitter();
 
@@ -117,7 +121,7 @@ export class CompanyDetailFormComponent implements OnInit {
     }
 
     onSave(): void {
-      this.employerService.createCompany(this.companyId, this.formCtrlValue)
+      this.employerService.createCompany(this.employerId, this.formCtrlValue)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe({
           next: () => {
@@ -134,13 +138,12 @@ export class CompanyDetailFormComponent implements OnInit {
 
     triggerFileInput(): void {
         const logo = document.getElementById('logo') as HTMLInputElement;
-        const header = document.getElementById('header') as HTMLInputElement;
+        logo.click();
+    }
 
-        if (logo) {
-            logo.click();
-        } else {
-            header.click();
-        }
+    triggerHeaderInput(): void {
+      const header = document.getElementById('header') as HTMLInputElement;
+      header.click();
     }
 
     onChangeFile(event: Event, type: string): void {
@@ -162,11 +165,12 @@ export class CompanyDetailFormComponent implements OnInit {
                 return;
             }
 
-            this.imgBase64 = URL.createObjectURL(file);
 
             if (type === 'logo') {
+              this.imgBase64 = URL.createObjectURL(file);
                 this.uploadLogoToServer(file);
             } else if (type === 'header') {
+              this.imgHeader = URL.createObjectURL(file);
                 this.uploadHeaderToServer(file);
             }
         }
