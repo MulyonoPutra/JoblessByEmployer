@@ -10,7 +10,13 @@ import { SkeletonLoaderComponent } from '../../../../shared/components/atoms/ske
 @Component({
     selector: 'app-company-detail-content',
     standalone: true,
-    imports: [CommonModule, AngularSvgIconModule, SkeletonLoaderComponent, EmptyStateComponent, CardContentComponent],
+    imports: [
+        CommonModule,
+        AngularSvgIconModule,
+        SkeletonLoaderComponent,
+        EmptyStateComponent,
+        CardContentComponent,
+    ],
     templateUrl: './company-detail-content.component.html',
     styleUrls: ['./company-detail-content.component.scss'],
 })
@@ -23,7 +29,5 @@ export class CompanyDetailContentComponent {
         this.clicked.emit();
     }
 
-    toggle(): void {
-      
-    }
+    toggle(): void {}
 }

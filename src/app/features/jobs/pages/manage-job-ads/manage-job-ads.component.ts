@@ -17,17 +17,16 @@ import { StorageService } from '../../../../shared/services/storage.service';
     styleUrls: ['./manage-job-ads.component.scss'],
 })
 export class ManageJobAdsComponent implements OnInit {
-
-  employerId!: string
+    employerId!: string;
 
     constructor(
         private readonly router: Router,
         private readonly toastService: ToastService,
         private readonly destroyRef: DestroyRef,
         private readonly jobAdService: JobAdService,
-        private readonly storageService: StorageService
+        private readonly storageService: StorageService,
     ) {
-      this.employerId = this.storageService.getEmployerIdentity();
+        this.employerId = this.storageService.getEmployerIdentity();
     }
 
     data!: JobAds[];
@@ -44,7 +43,7 @@ export class ManageJobAdsComponent implements OnInit {
 
     findJobAdsByEmployerId(status: string): void {
         this.jobAdService
-          .findJobAdsByEmployerId(this.employerId, status)
+            .findJobAdsByEmployerId(this.employerId, status)
             .pipe(takeUntilDestroyed(this.destroyRef))
             .subscribe({
                 next: (data: JobAds[]) => {

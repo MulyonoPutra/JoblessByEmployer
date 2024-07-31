@@ -55,9 +55,9 @@ export class CompanyDetailFormComponent implements OnInit {
         private readonly validationService: ValidationService,
         private readonly toastService: ToastService,
         private readonly employerService: EmployerService,
-        private readonly storageService: StorageService
+        private readonly storageService: StorageService,
     ) {
-      this.employerId = storageService.getEmployerIdentity();
+        this.employerId = storageService.getEmployerIdentity();
     }
 
     @Output() clicked = new EventEmitter();
@@ -82,7 +82,7 @@ export class CompanyDetailFormComponent implements OnInit {
         });
     }
 
-  get formCtrlValue(): Company {
+    get formCtrlValue(): Company {
         return {
             name: this.form.get('name')?.value,
             website: this.form.get('website')?.value,
@@ -116,24 +116,25 @@ export class CompanyDetailFormComponent implements OnInit {
 
     saveChanges(): void {
         if (this.form.valid) {
-          this.onSave();
+            this.onSave();
         }
     }
 
     onSave(): void {
-      this.employerService.createCompany(this.employerId, this.formCtrlValue)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-          next: () => {
-            this.toastService.showSuccessToast('Success', 'successfully change header!');
-          },
-          error: (error: HttpErrorResponse) => {
-            this.toastService.showErrorToast('Error', error.message);
-          },
-          complete: () => {
-            this.navigateAfterSucceed();
-          },
-        });
+        this.employerService
+            .createCompany(this.employerId, this.formCtrlValue)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: () => {
+                    this.toastService.showSuccessToast('Success', 'successfully change header!');
+                },
+                error: (error: HttpErrorResponse) => {
+                    this.toastService.showErrorToast('Error', error.message);
+                },
+                complete: () => {
+                    this.navigateAfterSucceed();
+                },
+            });
     }
 
     triggerFileInput(): void {
@@ -142,8 +143,8 @@ export class CompanyDetailFormComponent implements OnInit {
     }
 
     triggerHeaderInput(): void {
-      const header = document.getElementById('header') as HTMLInputElement;
-      header.click();
+        const header = document.getElementById('header') as HTMLInputElement;
+        header.click();
     }
 
     onChangeFile(event: Event, type: string): void {
@@ -165,12 +166,11 @@ export class CompanyDetailFormComponent implements OnInit {
                 return;
             }
 
-
             if (type === 'logo') {
-              this.imgBase64 = URL.createObjectURL(file);
+                this.imgBase64 = URL.createObjectURL(file);
                 this.uploadLogoToServer(file);
             } else if (type === 'header') {
-              this.imgHeader = URL.createObjectURL(file);
+                this.imgHeader = URL.createObjectURL(file);
                 this.uploadHeaderToServer(file);
             }
         }

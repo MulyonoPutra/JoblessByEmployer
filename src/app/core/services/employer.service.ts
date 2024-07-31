@@ -68,11 +68,11 @@ export class EmployerService {
             .pipe(map((response) => response.data));
     }
 
-  createCompany(employerId: string, body: CompanyDto): Observable<Company> {
-    return this.http
-      .post<
-        HttpResponseEntity<Company>
-      >(`${this.endpoint}/employer/company/${employerId}`, body)
-      .pipe(map((response) => response.data));
-  }
+    createCompany(employerId: string, body: CompanyDto): Observable<Company> {
+        return this.http
+            .post<
+                HttpResponseEntity<Company>
+            >(`${this.endpoint}/employer/company/${employerId}`, body)
+            .pipe(map((response) => response.data));
+    }
 }

@@ -2,7 +2,6 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Observable, catchError, map } from 'rxjs';
 
 import { CreateJobAdsDto } from '../domain/dto/create-job-ads.dto';
-import { HttpResponseEntity } from '../domain/entities/http-response-entity';
 import { Injectable } from '@angular/core';
 import { JobAds } from '../domain/entities/job-ads';
 import { StorageService } from '../../shared/services/storage.service';
@@ -27,13 +26,13 @@ export class JobAdService {
             .pipe(catchError((error: HttpErrorResponse) => handlerHttpError(error)));
     }
 
-  findJobAdsByEmployerId(employerId: string, status: string): Observable<JobAds[]> {
-    const endpoint = `${this.endpoint}/employer/job-ads/status`
-    const params = new HttpParams()
-      .set('employerId', employerId)
-      .set('status', status);
+    findJobAdsByEmployerId(employerId: string, status: string): Observable<JobAds[]> {
+        const endpoint = `${this.endpoint}/employer/job-ads/status`;
+        const params = new HttpParams().set('employerId', employerId).set('status', status);
 
-    return this.http.get<any>(endpoint, { params })
-      .pipe(map((response) => response.data), catchError((error: HttpErrorResponse) => handlerHttpError(error)));
+        return this.http.get<any>(endpoint, { params }).pipe(
+            map((response) => response.data),
+            catchError((error: HttpErrorResponse) => handlerHttpError(error)),
+        );
     }
 }
