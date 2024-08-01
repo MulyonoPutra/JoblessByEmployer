@@ -18,6 +18,7 @@ import { ButtonComponent } from '../../../../shared/components/atoms/button/butt
 import { FormInputFieldComponent } from '../../../../shared/components/atoms/form-input-field/form-input-field.component';
 import { FormPasswordFieldComponent } from '../../../../shared/components/atoms/form-password-field/form-password-field.component';
 import { LogoComponent } from '../../../../shared/components/atoms/logo/logo.component';
+import { LoginDto } from '../../../../core/domain/dto/login.dto';
 @Component({
     selector: 'app-login',
     standalone: true,
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    get formCtrlValue() {
+    get formCtrlValue(): LoginDto {
         return {
             email: this.form.get('email')?.value,
             password: this.form.get('password')?.value,
