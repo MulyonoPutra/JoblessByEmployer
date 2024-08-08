@@ -41,7 +41,7 @@ export const routes: Routes = [
                 data: { role: 'employer' },
             },
         ],
-    canActivate: [authenticationGuard],
+        canActivate: [authenticationGuard],
     },
     {
         path: 'auth',

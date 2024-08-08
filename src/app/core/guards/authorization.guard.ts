@@ -12,14 +12,17 @@ export const authorizationGuard: CanActivateFn = (route) => {
 
     if (token) {
         if (route.data['role'] && route.data['role'].indexOf(role) === -1) {
-            toastService.showWarnToast('You are not allowed!', 'Login or Register using Employer account to access this page.');
+            toastService.showWarnToast(
+                'You are not allowed!',
+                'Login or Register using Employer account to access this page.',
+            );
             router.navigate(['/']);
 
             return false;
         }
     } else {
-      router.navigate(['/login']);
-      return false;
+        router.navigate(['/login']);
+        return false;
     }
     return true;
 };
