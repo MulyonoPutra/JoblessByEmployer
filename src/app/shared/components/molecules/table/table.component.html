@@ -49,11 +49,11 @@
             <tr>
                 @for (column of columns; track $index) {
                     <td>
-                          @if (column.field === 'createdAt') {
+                        @if (column.field === 'createdAt') {
                             {{ resolveField(rowData, column.field) | date: 'mediumDate' }}
-                          } @else {
+                        } @else {
                             {{ resolveField(rowData, column.field) }}
-                          }
+                        }
                     </td>
                 }
                 <td>
