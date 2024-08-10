@@ -24,18 +24,3 @@ export class RangeDatePipe implements PipeTransform {
         return `${formattedStartDate} - ${formattedEndDate}`;
     }
 }
-
-/**
-Used:
-    dateRange: Date[] = [];
-
-    get formattedDateRange(): string {
-      if (this.dateRange.length === 2) {
-        const [startDate, endDate] = this.dateRange;
-        return `${startDate.toDateString()},${endDate.toDateString()}`;
-      }
-      return '';
-    }
-
-    <p>{{ formattedDateRange | dateRange }}</p>
-*/
