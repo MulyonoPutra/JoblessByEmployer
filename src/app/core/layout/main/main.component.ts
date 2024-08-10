@@ -36,7 +36,7 @@ import { User } from '../../domain/entities/user';
 export class MainComponent implements OnInit {
     user!: User;
     private currentRoute!: string;
-    private fullWidthRoutes: string[] = ['/', '/account/details', '/jobs/manage'];
+    private fullWidthRoutes: string[] = ['/', '/account/details', '/jobs/manage', '/about'];
 
     constructor(
         private readonly router: Router,
